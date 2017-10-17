@@ -24,7 +24,7 @@ Or install it yourself as:
 Connecting to local node ( or by SSH Tunnel )
 
 ```ruby
-web3 = Web3.Eth.Rpc.new
+web3 = Web3::Eth::Rpc.new
 ```
 
 To connect to remote Ethereum node, follow instructions: https://github.com/paritytech/parity/wiki/Wallet-Remote-Access
@@ -32,7 +32,7 @@ To connect to remote Ethereum node, follow instructions: https://github.com/pari
 If you need to connect to remote host, you can specify host, port and HTTP connection options:
 
 ```ruby
-web3 = Web3.Eth.Rpc.new 'node.host.com', 8545, { use_ssl: true, read_timeout: 120 } 
+web3 = Web3::Eth::Rpc.new 'node.host.com', 8545, { use_ssl: true, read_timeout: 120 } 
 ```
 
 Calling eth interface:
