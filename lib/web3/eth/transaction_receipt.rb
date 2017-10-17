@@ -1,7 +1,7 @@
 module Web3
   module Eth
 
-    class Transaction
+    class TransactionReceipt
 
       include Web3::Eth::Utility
 
@@ -22,16 +22,17 @@ module Web3
         from_hex blockNumber
       end
 
-      def value_eth
-        wei_to_ether from_hex value
+      def success?
+        status==1
       end
 
-      def gas_eth
-        wei_to_ether from_hex gas
+      def gas_used_eth
+        wei_to_ether from_hex gasUsed
       end
 
-      def gasPrice_eth
-        wei_to_ether from_hex gasPrice
+
+      def cumulative_gas_used_eth
+        wei_to_ether from_hex cumulativeGasUsed
       end
 
     end

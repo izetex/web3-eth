@@ -25,6 +25,14 @@ module Web3
         from_hex @web3_rpc.request("#{PREFIX}#{__method__}")
       end
 
+      def getTransactionByHash tx_hash
+        Transaction.new @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
+      end
+
+      def getTransactionReceipt tx_hash
+        TransactionReceipt.new @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
+      end
+
       def method_missing m, *args
         @web3_rpc.request "#{PREFIX}#{m}", args[0]
       end

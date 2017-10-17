@@ -5,11 +5,12 @@ module Web3
 
       include Web3::Eth::Utility
 
+      attr_reader :raw_data
+
       def initialize block_data
-        @block_data = block_data
+        @raw_data = block_data
 
         block_data.each do |k, v|
-          next if self.respond_to? k.to_sym
           self.instance_variable_set("@#{k}", v)
           self.class.send(:define_method, k, proc {self.instance_variable_get("@#{k}")})
         end
@@ -18,10 +19,6 @@ module Web3
           Transaction.new t
         }
 
-      end
-
-      def block_data
-        @block_data
       end
 
       def timestamp_time
