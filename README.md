@@ -32,7 +32,9 @@ To connect to remote Ethereum node, follow instructions: https://github.com/pari
 If you need to connect to remote host, you can specify host, port and HTTP connection options:
 
 ```ruby
-web3 = Web3::Eth::Rpc.new 'node.host.com', 8545, { use_ssl: true, read_timeout: 120 } 
+web3 = Web3::Eth::Rpc.new host: 'node.host.com', 
+                          port: 8545,  
+                          connect_options: { use_ssl: true, read_timeout: 120 } 
 ```
 
 Calling eth interface:
