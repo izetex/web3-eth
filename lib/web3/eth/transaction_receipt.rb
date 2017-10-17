@@ -15,7 +15,6 @@ module Web3
           self.class.send(:define_method, k, proc {self.instance_variable_get("@#{k}")})
         end
 
-
       end
 
       def block_number
@@ -23,7 +22,7 @@ module Web3
       end
 
       def success?
-        status==1
+         status==1 || status.nil?
       end
 
       def gas_used_eth

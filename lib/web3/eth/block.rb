@@ -25,6 +25,10 @@ module Web3
         Time.at from_hex timestamp
       end
 
+      def block_number
+        from_hex number
+      end
+
     end
 
   end
