@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["studnev"]
   spec.email         = ["studnev@izx.io"]
 
-  spec.summary       = %q{TODO: Web3 client to connect to Ethereum node by RPC.}
-  spec.description   = %q{TODO: Calling RPC methods of Ethereum node with Ruby.}
+  spec.summary       = %q{Web3 client to connect to Ethereum node by RPC.}
+  spec.description   = %q{Calling RPC methods of Ethereum node with Ruby.}
   spec.homepage      = "https://github.com/izetex/web3-eth"
   spec.license       = "MIT"
 

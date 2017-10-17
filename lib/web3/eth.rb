@@ -1,7 +1,6 @@
 require "web3/eth/version"
-
-module Web3
-  module Eth
-    # Your code goes here...
-  end
-end
+require "web3/eth/utility"
+require "web3/eth/block"
+require "web3/eth/transaction"
+require "web3/eth/ethereum"
+require "web3/eth/rpc"

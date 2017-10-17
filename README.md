@@ -1,8 +1,7 @@
-# Web3::Eth
+# Web3 RPC client for Ethereum node
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/web3/eth`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This Ruby Gem is used to connect and communicate with Ethereum node ( geth, parity, etc),
+having RPC interface. 
 
 ## Installation
 
@@ -22,7 +21,46 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Connecting to local node ( or by SSH Tunnel )
+
+```ruby
+web3 = Web3.Eth.Rpc.new
+```
+
+To connect to remote Ethereum node, follow instructions: https://github.com/paritytech/parity/wiki/Wallet-Remote-Access
+
+If you need to connect to remote host, you can specify host, port and HTTP connection options:
+
+```ruby
+web3 = Web3.Eth.Rpc.new 'node.host.com', 8545, { use_ssl: true, read_timeout: 120 } 
+```
+
+Calling eth interface:
+
+```
+>> web3.eth.blockNumber
+4376369
+
+>> web3.eth.getBalance '0x829BD824B016326A401d083B33D092293333A830'
+3916.6597314456685
+
+>> block = web3.eth.getBlockByNumber 4376369
+#<Web3::Eth::Block:0x007f844d6f1138 @block_data={"author"=>"0x829bd824b016326a401d083b33d092293333a830", ...
+
+>> block.timestamp_time
+2017-10-17 12:51:36 +0300
+
+>> block.transactions.count
+129
+
+>> block.transactions[0].from
+"0xb2930b35844a230f00e51431acae96fe543a0347"
+
+>> block.transactions[0].value_eth
+0.51896811
+
+```
+
 
 ## Development
 
@@ -32,7 +70,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/web3-eth. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/izetex/web3-eth. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
