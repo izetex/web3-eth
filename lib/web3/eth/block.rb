@@ -15,9 +15,7 @@ module Web3
           self.class.send(:define_method, k, proc {self.instance_variable_get("@#{k}")})
         end
 
-        @transactions = block_data['transactions'].collect {|t|
-          Transaction.new t
-        }
+        @transactions = @transactions.collect {|t|  Web3::Eth::Transaction.new t }
 
       end
 

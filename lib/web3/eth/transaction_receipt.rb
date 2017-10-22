@@ -15,6 +15,8 @@ module Web3
           self.class.send(:define_method, k, proc {self.instance_variable_get("@#{k}")})
         end
 
+        @logs = @logs.collect {|log|  Web3::Eth::Log.new log }
+
       end
 
       def block_number
