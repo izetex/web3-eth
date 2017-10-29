@@ -15,13 +15,12 @@ module Web3
 
     end
 
-
     def method_hash
-      topics.first
+      topics.first[2..65]
     end
 
     def indexed_args
-      topics[1...topics.size]
+      topics[1...topics.size].collect{|x| x[2..65]}
     end
 
 

@@ -1,7 +1,7 @@
 # Web3 RPC client for Ethereum node
 
 This Ruby Gem is used to connect and communicate with Ethereum node ( geth, parity, etc),
-having RPC interface. 
+having RPC interface. Also it has support to call Etherscan API.
 
 ## Installation
 
@@ -61,6 +61,23 @@ Calling eth interface:
 >> block.transactions[0].value_eth
 0.51896811
 
+```
+
+
+Calling Etherscan API:
+
+```
+api = Web3::Eth::Etherscan.new 'Your API Key'
+abi = api.contract_getabi address: '0xe3fedaecd47aa8eab6b23227b0ee56f092c967a9'
+```
+
+Method name for Etherscan must be constructed as <module>_<action>, for example contract_getabi 
+calls method getabi in module contract
+
+If method accepts only one parameter address, the call can be simplified to:
+
+```
+abi = api.contract_getabi '0xe3fedaecd47aa8eab6b23227b0ee56f092c967a9'
 ```
 
 

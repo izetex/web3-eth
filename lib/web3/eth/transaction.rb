@@ -18,6 +18,24 @@ module Web3
 
       end
 
+      def method_hash
+        if input && input.length>=10
+          input[2...10]
+        else
+          nil
+        end
+      end
+
+      def method_arguments
+        if input && input.length>10
+          (0...(input.length-10)/ 64).to_a.collect{|index|
+            input[index*64+10..index*64+73]
+          }
+        else
+          []
+        end
+      end
+
       def block_number
         from_hex blockNumber
       end
