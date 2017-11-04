@@ -6,10 +6,9 @@ module Web3
       DEFAULT_CONNECT_OPTIONS = {
           open_timeout: 10,
           read_timeout: 70,
-          parse_result: true
+          parse_result: true,
+          url: 'https://api.etherscan.io/api'
       }
-
-      ETHERSCAN_API = 'https://api.etherscan.io/api'
 
       attr_reader :api_key, :connect_options
 
@@ -42,7 +41,7 @@ module Web3
 
       def request api_module, action, args = {}
 
-        uri = URI ETHERSCAN_API
+        uri = URI connect_options[:url]
         uri.query = URI.encode_www_form({
             module: api_module,
             action: action,

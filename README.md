@@ -21,6 +21,8 @@ Or install it yourself as:
 
 ## Usage
 
+### Connect
+
 Connecting to local node ( or by SSH Tunnel )
 
 ```ruby
@@ -37,7 +39,7 @@ web3 = Web3::Eth::Rpc.new host: 'node.host.com',
                           connect_options: { use_ssl: true, read_timeout: 120 } 
 ```
 
-Calling eth interface:
+### Calling eth interface
 
 ```
 >> web3.eth.blockNumber
@@ -64,7 +66,7 @@ Calling eth interface:
 ```
 
 
-Calling Etherscan API:
+### Calling Etherscan API:
 
 ```
 api = Web3::Eth::Etherscan.new 'Your API Key'
@@ -79,6 +81,32 @@ If method accepts only one parameter address, the call can be simplified to:
 ```
 abi = api.contract_getabi '0xe3fedaecd47aa8eab6b23227b0ee56f092c967a9'
 ```
+
+### Accesing contract methods
+
+```
+# creation of contract object
+myContract = web3.eth.contract(abi);
+
+# initiate contract for an address
+myContractInstance = myContract.at('0xc4abd0339eb8d57087278718986382264244252f');
+
+# call constant function
+result = myContractInstance.myConstantMethod('myParam');
+puts result // '0x25434534534'
+```
+
+or using Etherscan API ( requires contract ABI be published in Etherescan ):
+
+```
+api = Web3::Eth::Etherscan.new 'Your API Key'
+myContractInstance = web3.eth.load_contract(api, '0xc4abd0339eb8d57087278718986382264244252f')
+
+// call constant function
+result = myContractInstance.myConstantMethod('myParam');
+puts result // '0x25434534534'
+```
+
 
 
 ## Development

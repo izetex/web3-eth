@@ -33,6 +33,15 @@ module Web3
         TransactionReceipt.new @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
       end
 
+      def contract abi
+        Web3::Eth::Contract.new @web3_rpc, abi
+      end
+
+      def load_contract etherscan_api, contract_address
+        contract(etherscan_api.contract_getabi address: contract_address).at contract_address
+      end
+
+
       def method_missing m, *args
         @web3_rpc.request "#{PREFIX}#{m}", args[0]
       end
