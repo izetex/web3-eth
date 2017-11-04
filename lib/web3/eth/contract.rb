@@ -75,6 +75,10 @@ module Web3
         events.values.detect{|e| e.signature_hash==method_hash}
       end
 
+      def find_function_by_hash method_hash
+        functions.values.detect{|e| e.signature_hash==method_hash}
+      end
+
       def parse_log_args log
 
         event = find_event_by_hash log.method_hash
@@ -95,6 +99,14 @@ module Web3
           input['indexed'] ? (i+=1; indexed_values[i-1]) : (j+=1;not_indexed_values[j-1])
         }
 
+      end
+
+      def parse_call_args transaction
+        function = find_function_by_hash transaction.method_hash
+        raise "No function found by hash #{transaction.method_hash}, probably ABI is not related to call" unless function
+        [function.input_types, transaction.method_arguments].transpose.collect{|arg|
+          decode_abi([arg.first], [arg.second].pack('H*') ).first
+        }
       end
 
       private

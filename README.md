@@ -107,6 +107,21 @@ result = myContractInstance.balanceOf('0x....'); # any constant method works
 puts result // '0x25434534534'
 ```
 
+
+### Parsing transaction call arguments
+
+Method parse_call_args parses call arguments according to ABI.
+Code example is:
+
+```
+api = Web3::Eth::Etherscan.new 'Your API Key'
+abi = api.contract_getabi address: '0x2ad180cbaffbc97237f572148fc1b283b68d8861'
+
+myContract = web3.eth.contract(abi);
+tx = web3.eth.getTransactionByHash '0x83da408b05061a2512fe1abf065b37a6aad9ae96d604b288a3da34bf9f1af9e6'
+myContract.parse_call_args tx
+```
+
 ### Parsing transaction logs
 
 Method parse_log_args parses indexed and not-indexed log event arguments according to ABI.
