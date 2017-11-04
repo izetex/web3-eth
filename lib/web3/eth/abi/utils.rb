@@ -192,9 +192,6 @@ module Web3::Eth::Abi
       keccak256(normalize_address(sender) + initcode)[12..-1]
     end
 
-    def remove_0x_head(s)
-      s[0,2] == '0x' ? s[2..-1] : s
-    end
 
     def parse_int_or_hex(s)
       if s.is_a?(Numeric)
@@ -212,6 +209,14 @@ module Web3::Eth::Abi
       else
         s
       end
+    end
+
+    def function_signature method_name, arg_types
+      "#{method_name}(#{arg_types.join(',')})"
+    end
+
+    def signature_hash signature, length=64
+      encode_hex(keccak256(signature))[0...length]
     end
 
 

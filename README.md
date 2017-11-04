@@ -89,24 +89,37 @@ abi = api.contract_getabi '0xe3fedaecd47aa8eab6b23227b0ee56f092c967a9'
 myContract = web3.eth.contract(abi);
 
 # initiate contract for an address
-myContractInstance = myContract.at('0xc4abd0339eb8d57087278718986382264244252f');
+myContractInstance = myContract.at('0x2ad180cbaffbc97237f572148fc1b283b68d8861');
 
 # call constant function
-result = myContractInstance.myConstantMethod('myParam');
-puts result // '0x25434534534'
+result = myContractInstance.balanceOf('0x...'); # any constant method works
+puts result 
 ```
 
 or using Etherscan API ( requires contract ABI be published in Etherescan ):
 
 ```
 api = Web3::Eth::Etherscan.new 'Your API Key'
-myContractInstance = web3.eth.load_contract(api, '0xc4abd0339eb8d57087278718986382264244252f')
+myContractInstance = web3.eth.load_contract(api, '0x2ad180cbaffbc97237f572148fc1b283b68d8861')
 
 // call constant function
-result = myContractInstance.myConstantMethod('myParam');
+result = myContractInstance.balanceOf('0x....'); # any constant method works
 puts result // '0x25434534534'
 ```
 
+### Parsing transaction logs
+
+Method parse_log_args parses indexed and not-indexed log event arguments according to ABI.
+Code example is:
+
+```
+api = Web3::Eth::Etherscan.new 'Your API Key'
+abi = api.contract_getabi address: '0x2ad180cbaffbc97237f572148fc1b283b68d8861'
+
+myContract = web3.eth.contract(abi);
+tx_receipt = web3.eth.getTransactionReceipt '0x83da408b05061a2512fe1abf065b37a6aad9ae96d604b288a3da34bf9f1af9e6'
+myContract.parse_log_args tx_receipt.logs.first
+```
 
 
 ## Development

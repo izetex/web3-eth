@@ -4,6 +4,7 @@ module Web3
 
       include Abi::AbiCoder
       include Abi::Utils
+      include Utility
 
       
       class ContractInstance
@@ -17,11 +18,34 @@ module Web3
           @contract.call_contract @address, m.to_s, args
         end
 
+        def __contract__
+          @contract
+        end
+
+        def __address__
+          @address
+        end
+
+      end
+
+      class ContractMethod
+        attr_reader :abi, :signature, :name, :signature_hash, :input_types, :output_types, :constant
+
+        def initialize abi
+          @abi = abi
+          @name = abi['name']
+          @constant = !!abi['constant']
+          @input_types = abi['inputs'].map{|a| a['type']}
+          @output_types = abi['outputs'].map{|a| a['type']} if abi['outputs']
+          @signature = Abi::Utils.function_signature @name, @input_types
+          @signature_hash = Abi::Utils.signature_hash @signature, (abi['type']=='event' ? 64 : 8)
+        end
+
       end
 
       attr_reader :web3_rpc, :abi, :functions, :events, :constructor
 
-      def initialize web_rpc, abi
+      def initialize abi, web_rpc = nil
         @web3_rpc = web_rpc
         @abi = abi.kind_of?(String) ? JSON.parse(abi) : abi
         parse_abi abi
@@ -35,29 +59,50 @@ module Web3
 
         function = functions[method_name]
         raise "No method found in ABI: #{method_name}" unless function
-        raise "Function #{method_name} is not constant: #{method_name}, require sign transaction" unless function['constant']
+        raise "Function #{method_name} is not constant: #{method_name}, requires to sign transaction" unless function.constant
 
-        arg_types = function['inputs'].map{|a| a['type']}
-        return_types = function['outputs'].map{|a| a['type']}
-
-        signature = "#{method_name}(#{arg_types.join(',')})"
-        data = '0x' + encode_hex(keccak256(signature))[0..7] +
-            encode_hex(encode_abi(arg_types, args) )
+        data = '0x' + function.signature_hash + encode_hex(encode_abi(function.input_types, args) )
 
         response = web3_rpc.request "eth_call", [{ to: contract_address, data: data}]
 
         string_data = [remove_0x_head(response)].pack('H*')
-        result = decode_abi return_types, string_data
+        result = decode_abi function.output_types, string_data
         result.length==1 ? result.first : result
+
+      end
+
+      def find_event_by_hash method_hash
+        events.values.detect{|e| e.signature_hash==method_hash}
+      end
+
+      def parse_log_args log
+
+        event = find_event_by_hash log.method_hash
+        raise "No event found by hash #{log.method_hash}, probably ABI is not related to log event" unless event
+
+        not_indexed_types = event.abi['inputs'].select{|a| !a['indexed']}.collect{|a| a['type']}
+        not_indexed_values = not_indexed_types.empty? ? [] :
+                             decode_abi(not_indexed_types, [remove_0x_head(log.raw_data['data'])].pack('H*') )
+
+        indexed_types = event.abi['inputs'].select{|a| a['indexed']}.collect{|a| a['type']}
+        indexed_values = [indexed_types, log.indexed_args].transpose.collect{|arg|
+          decode_abi([arg.first], [arg.second].pack('H*') ).first
+        }
+
+        i = j = 0
+
+        event.abi['inputs'].collect{|input|
+          input['indexed'] ? (i+=1; indexed_values[i-1]) : (j+=1;not_indexed_values[j-1])
+        }
 
       end
 
       private
 
       def parse_abi abi
-        @functions = Hash[abi.select{|a| a['type']=='function'}.map{|a| [a['name'], a]}]
-        @events = Hash[abi.select{|a| a['type']=='event'}.map{|a| [a['name'], a]}]
-        @constructor = abi.detect{|a| a['type']=='constructor'}
+        @functions = Hash[abi.select{|a| a['type']=='function'}.map{|a| [a['name'], ContractMethod.new(a)]}]
+        @events = Hash[abi.select{|a| a['type']=='event'}.map{|a| [a['name'], ContractMethod.new(a)]}]
+        @constructor = ContractMethod.new abi.detect{|a| a['type']=='constructor'}
       end
 
     end

@@ -34,7 +34,7 @@ module Web3
       end
 
       def contract abi
-        Web3::Eth::Contract.new @web3_rpc, abi
+        Web3::Eth::Contract.new abi, @web3_rpc
       end
 
       def load_contract etherscan_api, contract_address
