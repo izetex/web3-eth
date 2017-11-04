@@ -122,6 +122,20 @@ tx = web3.eth.getTransactionByHash '0x83da408b05061a2512fe1abf065b37a6aad9ae96d6
 myContract.parse_call_args tx
 ```
 
+### Parsing smart contract constructor arguments
+
+Method parse_constructor_args parses smart contract creation arguments according to ABI.
+Code example is:
+
+```
+api = Web3::Eth::Etherscan.new 'Your API Key'
+abi = api.contract_getabi address: '0xf4702b0918a8a89dfc38459ce42198834818f26b'
+
+myContract = web3.eth.contract(abi);
+tx = web3.eth.getTransactionByHash '0x35f0cf1d1c7ec14dd40fe3949d1c535ec3f3953f118cb9dc1394370f966cf957'
+myContract.parse_constructor_args tx
+```
+
 ### Parsing transaction logs
 
 Method parse_log_args parses indexed and not-indexed log event arguments according to ABI.

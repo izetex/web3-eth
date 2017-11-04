@@ -109,6 +109,14 @@ module Web3
         }
       end
 
+
+      def parse_constructor_args transaction
+        # suffix # 0xa1 0x65 'b' 'z' 'z' 'r' '0' 0x58 0x20 <32 bytes swarm hash> 0x00 0x29
+        # look http://solidity.readthedocs.io/en/latest/metadata.html for details
+        args = transaction.input[/a165627a7a72305820\w{64}0029(\w*)/,1]
+        args ? decode_abi(constructor.input_types, [args].pack('H*') ) : []
+      end
+
       private
 
       def parse_abi abi
