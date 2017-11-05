@@ -3,6 +3,16 @@
 This Ruby Gem is used to connect and communicate with Ethereum node ( geth, parity, etc),
 having RPC interface. Also it has support to call Etherscan API.
 
+What you can do using this GEM:
+
+  - use Web3 eth interface methods to read blocks, transactions 
+  - query Etherscan to get ABI for validated contracts
+  - parse transaction method calls according to ABI
+  - parse transaction logs according to ABI
+  - parse contract creation arguments accroding to ABI
+  - list internal transaction using parity extended trace JSONRPC API
+
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -149,6 +159,19 @@ myContract = web3.eth.contract(abi);
 tx_receipt = web3.eth.getTransactionReceipt '0x83da408b05061a2512fe1abf065b37a6aad9ae96d604b288a3da34bf9f1af9e6'
 myContract.parse_log_args tx_receipt.logs.first
 ```
+
+### Listing internal transactions
+
+To use this feature, you should run parity node with the option 
+--tracing on, refer to [https://github.com/paritytech/parity/wiki/Configuring-Parity#cli-options].
+
+```
+calls = web3.trace.internalCallsByHash '0x7ac18a1640e443cd069ff51da382b92b585e42dae8f38db0932380bfe86908a6'
+puts calls.first.from
+puts calls.first.to
+puts calls.first.value_eth
+```
+
 
 
 ## Development

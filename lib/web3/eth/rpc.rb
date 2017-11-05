@@ -17,6 +17,8 @@ module Web3
       DEFAULT_HOST = 'localhost'
       DEFAULT_PORT = 8545
 
+      attr_reader :eth, :trace
+
       def initialize host: DEFAULT_HOST, port: DEFAULT_PORT, connect_options: DEFAULT_CONNECT_OPTIONS
 
         @client_id = Random.rand 10000000
@@ -24,12 +26,9 @@ module Web3
         @uri = URI((connect_options[:use_ssl] ? 'https' : 'http')+ "://#{host}:#{port}")
         @connect_options = connect_options
 
-        @eth = Ethereum.new self
-      end
+        @eth = EthModule.new self
+        @trace = TraceModule.new self
 
-
-      def eth
-        @eth
       end
 
 

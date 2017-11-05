@@ -1,7 +1,7 @@
 module Web3
   module Eth
 
-    class Ethereum
+    class EthModule
 
       include Web3::Eth::Utility
 
