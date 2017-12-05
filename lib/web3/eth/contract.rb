@@ -48,7 +48,7 @@ module Web3
       def initialize abi, web_rpc = nil
         @web3_rpc = web_rpc
         @abi = abi.kind_of?(String) ? JSON.parse(abi) : abi
-        parse_abi abi
+        parse_abi @abi
       end
 
       def at address
