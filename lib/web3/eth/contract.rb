@@ -66,6 +66,8 @@ module Web3
         response = web3_rpc.request "eth_call", [{ to: contract_address, data: data}]
 
         string_data = [remove_0x_head(response)].pack('H*')
+        return nil if string_data.empty?
+
         result = decode_abi function.output_types, string_data
         result.length==1 ? result.first : result
 
