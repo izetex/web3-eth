@@ -24,7 +24,7 @@ module Web3
       end
 
       def success?
-         status==1 || status.nil?
+         status==1 || status=='0x1' || status.nil?
       end
 
       def gas_used_eth

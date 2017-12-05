@@ -97,9 +97,11 @@ module Web3
 
         i = j = 0
 
-        event.abi['inputs'].collect{|input|
+        args = event.abi['inputs'].collect{|input|
           input['indexed'] ? (i+=1; indexed_values[i-1]) : (j+=1;not_indexed_values[j-1])
         }
+
+        {event: event, args: args}
 
       end
 
