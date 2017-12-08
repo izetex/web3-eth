@@ -6,7 +6,7 @@ module Web3
       include Abi::Utils
       include Utility
 
-      
+
       class ContractInstance
 
         def initialize contract, address
@@ -63,7 +63,7 @@ module Web3
 
         data = '0x' + function.signature_hash + encode_hex(encode_abi(function.input_types, args) )
 
-        response = web3_rpc.request "eth_call", [{ to: contract_address, data: data}]
+        response = web3_rpc.request "eth_call", [{ to: contract_address, data: data}, 'latest']
 
         string_data = [remove_0x_head(response)].pack('H*')
         return nil if string_data.empty?
