@@ -43,10 +43,15 @@ module Web3
 
           raise "Error code #{response.code} on request #{@uri.to_s} #{request.body}" unless response.kind_of? Net::HTTPOK
 
-          json = JSON.parse(response.body)['result']
-          raise "No response on request #{@uri.to_s} #{request.body}" unless json
+          body = JSON.parse(response.body)
 
-          json
+          if body['result']
+            body['result']
+          elsif body['error']
+            raise "Error #{@uri.to_s} #{body['error']} on request #{@uri.to_s} #{request.body}"
+          else
+            raise "No response on request #{@uri.to_s} #{request.body}"
+          end
 
         end
 
