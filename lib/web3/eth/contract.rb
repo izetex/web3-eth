@@ -126,7 +126,7 @@ module Web3
       def parse_abi abi
         @functions = Hash[abi.select{|a| a['type']=='function'}.map{|a| [a['name'], ContractMethod.new(a)]}]
         @events = Hash[abi.select{|a| a['type']=='event'}.map{|a| [a['name'], ContractMethod.new(a)]}]
-        @constructor = ContractMethod.new abi.detect{|a| a['type']=='constructor'}
+        @constructor = (constructor = abi.detect{|a| a['type']=='constructor'}) && ContractMethod.new(constructor)
       end
 
     end
