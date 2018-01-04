@@ -1,230 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="77985b6c-f92a-4530-bf9e-bd636f59215e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/web3/eth/contract.rb" afterPath="$PROJECT_DIR$/lib/web3/eth/contract.rb" />
+    <list default="true" id="879fce69-5fbe-4aaf-914d-d48857f953e7" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ChangesViewManager" flattened_view="false" />
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/web3_eth@Rails_console__dao.coverage" NAME="Rails console: dao Coverage Results" MODIFIED="1509908652997" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$USER_HOME$/sources/dao" MODULE_NAME="dao" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="contract.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/lib/web3/eth/contract.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="376">
-              <caret line="68" column="40" lean-forward="true" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="118">
-                <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="abi_coder.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/web3/eth/abi/abi_coder.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="232" column="52" lean-forward="false" selection-start-line="232" selection-start-column="28" selection-end-line="232" selection-end-column="52" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eth.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/web3/eth.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="eth_module.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/web3/eth/eth_module.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="447">
-              <caret line="36" column="29" lean-forward="false" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="25" lean-forward="false" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile.lock" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile.lock">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="web3-eth.gemspec" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web3-eth.gemspec">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="33" lean-forward="false" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utility.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/web3/eth/utility.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="11" lean-forward="false" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="utils.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/web3/eth/abi/utils.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Ruby Class Template" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>0.1.0</find>
-      <find>contract</find>
-      <find>eth</find>
-      <find>rlp</find>
-      <find>decode</find>
-      <find>sub</find>
-      <find>decode_type</find>
-      <find>encode</find>
-      <find>Util</find>
-      <find>child_dao_list</find>
-      <find>debug_by_step</find>
-      <find>hex_arg</find>
-      <find>hex64</find>
-      <find>wei_to_ether</find>
-      <find>from_hex</find>
-      <find>hex</find>
-      <find>build_method_signature</find>
-      <find>remove_0x_head</find>
-      <find>Ethereum</find>
-      <find>Not enough data for head</find>
-    </findStrings>
-    <dirStrings>
-      <dir>$USER_HOME$/sources/dao</dir>
-      <dir>$PROJECT_DIR$</dir>
-    </dirStrings>
-  </component>
-  <component name="GeneratorOptions">
-    <option name="VCS_SHOW_CONFIRMATION" value="true" />
-    <option name="ENVIRONMENT" value="development" />
+    <leaf />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/lib/web3/eth/eth.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/transaction_receipt.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/block.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/version.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/transaction.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/log.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/etherscan.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/abi/abi.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/abi/constant.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/abi/type.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/abi/exceptions.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/abi/abi_coder.rb" />
-        <option value="$USER_HOME$/sources/dao/db/seeds.rb" />
-        <option value="$USER_HOME$/sources/dao/lib/ethereum/block_crawler.rb" />
-        <option value="$USER_HOME$/sources/dao/Gemfile" />
-        <option value="$USER_HOME$/sources/dao/config/initializers/backtrace_silencers.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/ethereum.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/abi/utils.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/utility.rb" />
-        <option value="$USER_HOME$/sources/dao/db/migrate/20171022092409_create_blockchains.rb" />
-        <option value="$USER_HOME$/sources/dao/db/migrate/20171022095607_create_addresses.rb" />
-        <option value="$USER_HOME$/sources/dao/db/migrate/20171022100010_create_tx_receipts.rb" />
-        <option value="$USER_HOME$/sources/dao/db/migrate/20171028095015_create_contract_abis.rb" />
-        <option value="$USER_HOME$/sources/dao/db/migrate/20171028095014_create_smart_contracts.rb" />
-        <option value="$USER_HOME$/sources/dao/db/migrate/20171028095359_create_method_signatures.rb" />
-        <option value="$USER_HOME$/sources/dao/db/migrate/20171105091340_create_interactions.rb" />
-        <option value="$USER_HOME$/sources/dao/app/models/blockchain.rb" />
-        <option value="$USER_HOME$/sources/dao/db/migrate/20171022093303_create_blocks.rb" />
-        <option value="$USER_HOME$/sources/dao/app/models/block.rb" />
-        <option value="$USER_HOME$/sources/dao/db/migrate/20171022104327_create_currencies.rb" />
-        <option value="$USER_HOME$/sources/dao/db/migrate/20171022100009_create_txs.rb" />
-        <option value="$USER_HOME$/sources/dao/app/models/tx.rb" />
-        <option value="$USER_HOME$/sources/dao/app/models/address.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/eth_module.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/rpc.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/trace.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/trace_module.rb" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/call_trace.rb" />
-        <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/Gemfile.lock" />
-        <option value="$PROJECT_DIR$/web3-eth.gemspec" />
-        <option value="$PROJECT_DIR$/lib/web3/eth/contract.rb" />
-      </list>
-    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1695" />
-    <option name="y" value="169" />
-    <option name="width" value="1681" />
-    <option name="height" value="698" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -250,6 +50,11 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="web3-eth" type="cbb8eebc:String" user="web3-eth" />
             </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="web3-eth" type="cbb8eebc:String" user="web3-eth" />
+              <item name=".idea" type="cbb8eebc:String" user=".idea" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -261,49 +66,11 @@
               <item name="web3-eth" type="b2602c69:ProjectViewProjectNode" />
               <item name="web3-eth" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="web3-eth" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web3-eth" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web3-eth" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web3-eth" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="web3" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web3-eth" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web3-eth" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="web3" type="462c0819:PsiDirectoryNode" />
-              <item name="eth" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="web3-eth" type="b2602c69:ProjectViewProjectNode" />
-              <item name="web3-eth" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="web3" type="462c0819:PsiDirectoryNode" />
-              <item name="eth" type="462c0819:PsiDirectoryNode" />
-              <item name="abi" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
     </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="true" />
-    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
-    <property name="project.settings.patched" value="true" />
-    <property name="RailsGeneratorsPopup.hiddenIncluded" value="false" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/lib/web3/eth" />
-      <recent name="$PROJECT_DIR$/lib/web3/eth/abi" />
-    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -317,254 +84,50 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="IRB console.Rails console: dao">
-    <configuration name="Rails console: dao" type="IrbRunConfigurationType" factoryName="IRB console" temporary="true">
-      <module name="dao" />
-      <IRB_RUN_CONFIG NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <IRB_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$" />
-      <IRB_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="false" />
-      <IRB_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="" />
-      <IRB_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
-      <envs />
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <IRB_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="$MODULE_DIR$/bin/rails" />
-      <IRB_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="console" />
-      <IRB_RUN_CONFIG NAME="IS_RAILS_CONSOLE" VALUE="true" />
-    </configuration>
-    <configuration default="true" type="RailsRunConfigurationType" factoryName="Rails">
-      <predefined_log_file id="RUBY_RAILS_SERVER" enabled="true" />
-      <module name="web3-eth" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RUBY_ARGS" VALUE="-e $stdout.sync=true;$stderr.sync=true;load($0=ARGV.shift)" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="WORK DIR" VALUE="" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SHOULD_USE_SDK" VALUE="false" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ALTERN_SDK_NAME" VALUE="" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="myPassParentEnvs" VALUE="true" />
-      <envs />
-      <EXTENSION ID="BundlerRunConfigurationExtension" bundleExecEnabled="false" />
-      <EXTENSION ID="JRubyRunConfigurationExtension" NailgunExecEnabled="false" />
-      <EXTENSION ID="RubyCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" track_test_folders="true" runner="rcov">
-        <COVERAGE_PATTERN ENABLED="true">
-          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
-        </COVERAGE_PATTERN>
-      </EXTENSION>
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="SCRIPT_ARGS" VALUE="" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="PORT" VALUE="3000" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="IP" VALUE="0.0.0.0" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="DUMMY_APP" VALUE="$USER_HOME$/sources/dao" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="RAILS_SERVER_TYPE" VALUE="default" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="ENVIRONMENT_TYPE" VALUE="development" />
-      <RAILS_SERVER_CONFIG_SETTINGS_ID NAME="LAUNCH_JS" VALUE="false" />
-    </configuration>
-    <recent_temporary>
-      <list size="1">
-        <item index="0" class="java.lang.String" itemvalue="IRB console.Rails console: dao" />
-      </list>
-    </recent_temporary>
-  </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
+  <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="false" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="77985b6c-f92a-4530-bf9e-bd636f59215e" name="Default" comment="" />
-      <created>1508232317976</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1508232317976</updated>
-      <workItem from="1508232320433" duration="603000" />
-      <workItem from="1508232952975" duration="12787000" />
-      <workItem from="1508277247750" duration="79000" />
-      <workItem from="1508514322705" duration="1282000" />
-      <workItem from="1508671876399" duration="4325000" />
-      <workItem from="1508753864450" duration="52000" />
-      <workItem from="1508794605346" duration="689000" />
-      <workItem from="1509046771799" duration="2102000" />
-      <workItem from="1509167949308" duration="17640000" />
-      <workItem from="1509426324939" duration="2214000" />
-      <workItem from="1509508298413" duration="53000" />
-      <workItem from="1509508387291" duration="112000" />
-      <workItem from="1509508510347" duration="339000" />
-      <workItem from="1509508897346" duration="4787000" />
-      <workItem from="1509568268526" duration="2065000" />
-      <workItem from="1509783116233" duration="3026000" />
-      <workItem from="1509788142675" duration="23107000" />
-      <workItem from="1509903488451" duration="6397000" />
-      <workItem from="1512386098958" duration="1658000" />
-      <workItem from="1512463103274" duration="2519000" />
-    </task>
-    <task id="LOCAL-00001" summary="initial project">
-      <created>1508232659898</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1508232659898</updated>
-    </task>
-    <task id="LOCAL-00002" summary="initial project">
-      <created>1508232927338</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1508232927338</updated>
-    </task>
-    <task id="LOCAL-00003" summary="eth implementation">
-      <created>1508234596990</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1508234596990</updated>
-    </task>
-    <task id="LOCAL-00004" summary="eth implementation">
-      <created>1508235155205</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1508235155205</updated>
-    </task>
-    <task id="LOCAL-00005" summary="made transaction receipts">
-      <created>1508253580711</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1508253580711</updated>
-    </task>
-    <task id="LOCAL-00006" summary="made transaction receipts">
-      <created>1508274087060</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1508274087060</updated>
-    </task>
-    <task id="LOCAL-00007" summary="fix doc">
-      <created>1508277317660</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1508277317660</updated>
-    </task>
-    <task id="LOCAL-00008" summary="addition of log model">
-      <created>1508716089627</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1508716089627</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Etherscan added, transaction log parsing">
-      <created>1509268404164</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1509268404164</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Calling transaction constant methods">
-      <created>1509796977124</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1509796977124</updated>
-    </task>
-    <task id="LOCAL-00011" summary="parsing transaction logs">
-      <created>1509804887273</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1509804887273</updated>
-    </task>
-    <task id="LOCAL-00012" summary="parse_call_args">
-      <created>1509806040524</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1509806040524</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Parsing smart contract constructor arguments">
-      <created>1509809560899</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1509809560899</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Internal transacton queryt using parity extended JSON RPC API">
-      <created>1509909169087</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1509909169087</updated>
-    </task>
-    <task id="LOCAL-00015" summary="added dependency from digest sha3">
-      <created>1512463514773</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1512463514773</updated>
-    </task>
-    <task id="LOCAL-00016" summary="fixed contract init">
-      <created>1512465320048</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1512465320048</updated>
-    </task>
-    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85836000" />
+    <option name="totallyTimeSpent" value="14000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1695" y="169" width="1681" height="698" extended-state="0" />
+    <frame x="0" y="23" width="1280" height="692" extended-state="6" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23672971" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25686592" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32888147" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16527545" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39732888" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17420435" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3115578" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36560935" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.43048576" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49415693" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32888147" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16527545" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39732888" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36560935" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23672971" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.43071786" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.49415693" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="initial project" />
-    <MESSAGE value="eth implementation" />
-    <MESSAGE value="made transaction receipts" />
-    <MESSAGE value="fix doc" />
-    <MESSAGE value="addition of log model" />
-    <MESSAGE value="Etherscan added, transaction log parsing" />
-    <MESSAGE value="Calling transaction constant methods" />
-    <MESSAGE value="parsing transaction logs" />
-    <MESSAGE value="parse_call_args" />
-    <MESSAGE value="Parsing smart contract constructor arguments" />
-    <MESSAGE value="Internal transacton queryt using parity extended JSON RPC API" />
-    <MESSAGE value="added dependency from digest sha3" />
-    <MESSAGE value="fixed contract init" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed contract init" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -580,13 +143,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/web3/eth/version.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/sources/dao/lib/ethereum/transaction_processor.rb" />
     <entry file="file://$USER_HOME$/sources/dao/lib/ethereum/smart_contract_processor.rb" />
     <entry file="file://$USER_HOME$/sources/dao/lib/ethereum/function_processor.rb" />
@@ -667,7 +223,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="11" lean-forward="false" selection-start-line="3" selection-start-column="11" selection-end-line="3" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -675,7 +230,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="45">
           <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="21" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -699,7 +253,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="16" selection-end-line="4" selection-end-column="16" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -707,7 +260,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="23" lean-forward="false" selection-start-line="6" selection-start-column="23" selection-end-line="6" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -715,7 +267,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="447">
           <caret line="36" column="29" lean-forward="false" selection-start-line="36" selection-start-column="29" selection-end-line="36" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -724,7 +275,6 @@
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="118">
             <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-            <folding />
           </first_editor>
           <second_editor />
         </state>
@@ -742,6 +292,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="376">
           <caret line="68" column="40" lean-forward="true" selection-start-line="68" selection-start-column="15" selection-end-line="68" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="7" lean-forward="false" selection-start-line="9" selection-start-column="7" selection-end-line="9" selection-end-column="7" />
           <folding />
         </state>
       </provider>
