@@ -49,6 +49,9 @@ web3 = Web3::Eth::Rpc.new host: 'node.host.com',
                           connect_options: { use_ssl: true, read_timeout: 120 } 
 ```
 
+HTTP connection options are from  [Ruby HTTP](https://ruby-doc.org/stdlib-2.4.2/libdoc/net/http/rdoc/Net/HTTP.html)  plus additional optional property
+**rpc_path** - path to RPC interface.
+
 ### Calling eth interface
 
 ```

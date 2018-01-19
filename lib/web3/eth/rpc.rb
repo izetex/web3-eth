@@ -23,7 +23,7 @@ module Web3
 
         @client_id = Random.rand 10000000
 
-        @uri = URI((connect_options[:use_ssl] ? 'https' : 'http')+ "://#{host}:#{port}")
+        @uri = URI((connect_options[:use_ssl] ? 'https' : 'http')+ "://#{host}:#{port}#{connect_options[:rpc_path]}")
         @connect_options = connect_options
 
         @eth = EthModule.new self

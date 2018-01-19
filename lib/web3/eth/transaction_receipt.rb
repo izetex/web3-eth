@@ -27,13 +27,13 @@ module Web3
          status==1 || status=='0x1' || status.nil?
       end
 
-      def gas_used_eth
-        wei_to_ether from_hex gasUsed
+      def gas_used
+        from_hex gasUsed
       end
 
 
-      def cumulative_gas_used_eth
-        wei_to_ether from_hex cumulativeGasUsed
+      def cumulative_gas_used
+        from_hex cumulativeGasUsed
       end
 
     end

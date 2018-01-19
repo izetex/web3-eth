@@ -9,13 +9,10 @@ module Web3
 
       def initialize transaction_data
         @raw_data = transaction_data
-
         transaction_data.each do |k, v|
           self.instance_variable_set("@#{k}", v)
           self.class.send(:define_method, k, proc {self.instance_variable_get("@#{k}")})
         end
-
-
       end
 
       def method_hash
@@ -26,11 +23,13 @@ module Web3
         end
       end
 
-      def method_arguments
-        if input && input.length>10
-          (0...(input.length-10)/ 64).to_a.collect{|index|
-            input[index*64+10..index*64+73]
-          }
+      # suffix # 0xa1 0x65 'b' 'z' 'z' 'r' '0' 0x58 0x20 <32 bytes swarm hash> 0x00 0x29
+      # look http://solidity.readthedocs.io/en/latest/metadata.html for details
+      def call_input_data
+        if creates && input
+          input[/a165627a7a72305820\w{64}0029(\w*)/,1]
+        elsif input && input.length>10
+          input[10..input.length]
         else
           []
         end
@@ -44,8 +43,8 @@ module Web3
         wei_to_ether from_hex value
       end
 
-      def gas_eth
-        wei_to_ether from_hex gas
+      def gas_limit
+        from_hex gas
       end
 
       def gasPrice_eth

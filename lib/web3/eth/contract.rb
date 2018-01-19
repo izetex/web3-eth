@@ -108,16 +108,12 @@ module Web3
       def parse_call_args transaction
         function = find_function_by_hash transaction.method_hash
         raise "No function found by hash #{transaction.method_hash}, probably ABI is not related to call" unless function
-        [function.input_types, transaction.method_arguments].transpose.collect{|arg|
-          decode_abi([arg.first], [arg.second].pack('H*') ).first
-        }
+        decode_abi function.input_types, [transaction.call_input_data].pack('H*')
       end
 
 
       def parse_constructor_args transaction
-        # suffix # 0xa1 0x65 'b' 'z' 'z' 'r' '0' 0x58 0x20 <32 bytes swarm hash> 0x00 0x29
-        # look http://solidity.readthedocs.io/en/latest/metadata.html for details
-        args = transaction.input[/a165627a7a72305820\w{64}0029(\w*)/,1]
+        args = transaction.call_input_data
         args ? decode_abi(constructor.input_types, [args].pack('H*') ) : []
       end
 
