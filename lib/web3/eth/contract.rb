@@ -43,20 +43,30 @@ module Web3
 
         def parse_event_args log
 
-          not_indexed_types = abi['inputs'].select{|a| !a['indexed']}.collect{|a| a['type']}
-          not_indexed_values = not_indexed_types.empty? ? [] :
-                                   decode_abi(not_indexed_types, [remove_0x_head(log.raw_data['data'])].pack('H*') )
+          if log.indexed_args.empty?
+            if log.raw_data['data'].empty?
+              []
+            else
+              all_types = abi['inputs'].collect{|a| a['type']}
+              decode_abi(all_types, [remove_0x_head(log.raw_data['data'])].pack('H*') )
+            end
+          else
+            not_indexed_types = abi['inputs'].select{|a| !a['indexed']}.collect{|a| a['type']}
+            not_indexed_values = not_indexed_types.empty? ? [] :
+                                     decode_abi(not_indexed_types, [remove_0x_head(log.raw_data['data'])].pack('H*') )
 
-          indexed_types = abi['inputs'].select{|a| a['indexed']}.collect{|a| a['type']}
-          indexed_values = [indexed_types, log.indexed_args].transpose.collect{|arg|
-            decode_abi([arg.first], [arg.second].pack('H*') ).first
-          }
+            indexed_types = abi['inputs'].select{|a| a['indexed']}.collect{|a| a['type']}
+            indexed_values = [indexed_types, log.indexed_args].transpose.collect{|arg|
+              decode_abi([arg.first], [arg.second].pack('H*') ).first
+            }
 
-          i = j = 0
+            i = j = 0
 
-          abi['inputs'].collect{|input|
-            input['indexed'] ? (i+=1; indexed_values[i-1]) : (j+=1;not_indexed_values[j-1])
-          }
+            abi['inputs'].collect{|input|
+              input['indexed'] ? (i+=1; indexed_values[i-1]) : (j+=1;not_indexed_values[j-1])
+            }
+
+          end
 
         end
 
