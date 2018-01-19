@@ -65,7 +65,7 @@ module Web3
           d.empty? ? [] : decode_abi(input_types, [d].pack('H*'))
         end
 
-        def do_call contract_address, args
+        def do_call web3_rpc, contract_address, args
           data = '0x' + signature_hash + encode_hex(encode_abi(input_types, args) )
 
           response = web3_rpc.request "eth_call", [{ to: contract_address, data: data}, 'latest']
@@ -95,7 +95,7 @@ module Web3
         function = functions[method_name]
         raise "No method found in ABI: #{method_name}" unless function
         raise "Function #{method_name} is not constant: #{method_name}, requires to sign transaction" unless function.constant
-        function.do_call contract_address, args
+        function.do_call web3_rpc, contract_address, args
       end
 
       def find_event_by_hash method_hash
