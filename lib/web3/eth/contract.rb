@@ -2,11 +2,6 @@ module Web3
   module Eth
     class Contract
 
-      include Abi::AbiCoder
-      include Abi::Utils
-      include Utility
-
-
       class ContractInstance
 
         def initialize contract, address
@@ -29,6 +24,11 @@ module Web3
       end
 
       class ContractMethod
+
+        include Abi::AbiCoder
+        include Abi::Utils
+        include Utility
+
         attr_reader :abi, :signature, :name, :signature_hash, :input_types, :output_types, :constant
 
         def initialize abi
@@ -39,6 +39,42 @@ module Web3
           @output_types = abi['outputs'].map{|a| a['type']} if abi['outputs']
           @signature = Abi::Utils.function_signature @name, @input_types
           @signature_hash = Abi::Utils.signature_hash @signature, (abi['type']=='event' ? 64 : 8)
+        end
+
+        def parse_event_args log
+
+          not_indexed_types = abi['inputs'].select{|a| !a['indexed']}.collect{|a| a['type']}
+          not_indexed_values = not_indexed_types.empty? ? [] :
+                                   decode_abi(not_indexed_types, [remove_0x_head(log.raw_data['data'])].pack('H*') )
+
+          indexed_types = abi['inputs'].select{|a| a['indexed']}.collect{|a| a['type']}
+          indexed_values = [indexed_types, log.indexed_args].transpose.collect{|arg|
+            decode_abi([arg.first], [arg.second].pack('H*') ).first
+          }
+
+          i = j = 0
+
+          abi['inputs'].collect{|input|
+            input['indexed'] ? (i+=1; indexed_values[i-1]) : (j+=1;not_indexed_values[j-1])
+          }
+
+        end
+
+        def parse_method_args transaction
+          d = transaction.call_input_data
+          d.empty? ? [] : decode_abi(input_types, [d].pack('H*'))
+        end
+
+        def do_call contract_address, args
+          data = '0x' + signature_hash + encode_hex(encode_abi(input_types, args) )
+
+          response = web3_rpc.request "eth_call", [{ to: contract_address, data: data}, 'latest']
+
+          string_data = [remove_0x_head(response)].pack('H*')
+          return nil if string_data.empty?
+
+          result = decode_abi output_types, string_data
+          result.length==1 ? result.first : result
         end
 
       end
@@ -56,21 +92,10 @@ module Web3
       end
 
       def call_contract contract_address, method_name, args
-
         function = functions[method_name]
         raise "No method found in ABI: #{method_name}" unless function
         raise "Function #{method_name} is not constant: #{method_name}, requires to sign transaction" unless function.constant
-
-        data = '0x' + function.signature_hash + encode_hex(encode_abi(function.input_types, args) )
-
-        response = web3_rpc.request "eth_call", [{ to: contract_address, data: data}, 'latest']
-
-        string_data = [remove_0x_head(response)].pack('H*')
-        return nil if string_data.empty?
-
-        result = decode_abi function.output_types, string_data
-        result.length==1 ? result.first : result
-
+        function.do_call contract_address, args
       end
 
       def find_event_by_hash method_hash
@@ -82,39 +107,20 @@ module Web3
       end
 
       def parse_log_args log
-
         event = find_event_by_hash log.method_hash
         raise "No event found by hash #{log.method_hash}, probably ABI is not related to log event" unless event
-
-        not_indexed_types = event.abi['inputs'].select{|a| !a['indexed']}.collect{|a| a['type']}
-        not_indexed_values = not_indexed_types.empty? ? [] :
-                             decode_abi(not_indexed_types, [remove_0x_head(log.raw_data['data'])].pack('H*') )
-
-        indexed_types = event.abi['inputs'].select{|a| a['indexed']}.collect{|a| a['type']}
-        indexed_values = [indexed_types, log.indexed_args].transpose.collect{|arg|
-          decode_abi([arg.first], [arg.second].pack('H*') ).first
-        }
-
-        i = j = 0
-
-        args = event.abi['inputs'].collect{|input|
-          input['indexed'] ? (i+=1; indexed_values[i-1]) : (j+=1;not_indexed_values[j-1])
-        }
-
-        {event: event, args: args}
-
+        event.parse_event_args log
       end
 
       def parse_call_args transaction
         function = find_function_by_hash transaction.method_hash
         raise "No function found by hash #{transaction.method_hash}, probably ABI is not related to call" unless function
-        decode_abi function.input_types, [transaction.call_input_data].pack('H*')
+        function.parse_method_args transaction
       end
 
 
       def parse_constructor_args transaction
-        args = transaction.call_input_data
-        args ? decode_abi(constructor.input_types, [args].pack('H*') ) : []
+        constructor ? constructor.parse_method_args(transaction) : []
       end
 
       private
