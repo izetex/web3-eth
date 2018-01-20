@@ -72,7 +72,7 @@ module Web3
 
         def parse_method_args transaction
           d = transaction.call_input_data
-          d.empty? ? [] : decode_abi(input_types, [d].pack('H*'))
+          (!d || d.empty?) ? [] : decode_abi(input_types, [d].pack('H*'))
         end
 
         def do_call web3_rpc, contract_address, args
