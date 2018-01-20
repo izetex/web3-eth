@@ -248,7 +248,7 @@ module Web3::Eth::Abi
         l = Utils.big_endian_to_int arg[0,32]
         data = arg[32..-1]
 
-        raise DecodingError, "Wrong data size for string/bytes object" unless data.size == Utils.ceil32(l)
+        raise DecodingError, "Wrong data size for string/bytes object" unless data.size <= Utils.ceil32(l)
 
         data[0, l]
       elsif type.dynamic?
