@@ -38,7 +38,7 @@ module Web3
       end
 
       def gas_used
-        result && result['gasUsed']
+        result && from_hex(result['gasUsed'])
       end
 
       def method_hash
