@@ -71,8 +71,6 @@ module Web3
             []
           end
 
-        rescue Exception => ex
-          nil
         end
 
 
