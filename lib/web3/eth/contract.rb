@@ -44,28 +44,19 @@ module Web3
         def parse_event_args log
 
           log_data = remove_0x_head log.raw_data['data']
+          indexed_types = abi['inputs'].select{|a| a['indexed']}.collect{|a| a['type']}
+          not_indexed_types = abi['inputs'].select{|a| !a['indexed']}.collect{|a| a['type']}
 
-          if log.indexed_args.empty?
-            if log_data.empty?
-              []
-            else
-              all_types = abi['inputs'].collect{|a| a['type']}
-              decode_abi(all_types, [log_data].pack('H*') )
-            end
-          elsif log_data.empty?
-            all_types = abi['inputs'].collect{|a| a['type']}
-            [all_types, log.indexed_args].transpose.collect{|arg|
-              decode_abi([arg.first], [arg.second].pack('H*') ).first
-            }
-          else
-            not_indexed_types = abi['inputs'].select{|a| !a['indexed']}.collect{|a| a['type']}
-            not_indexed_values = not_indexed_types.empty? ? [] :
-                                     decode_abi(not_indexed_types, [log_data].pack('H*') )
+          indexed_args = log.indexed_args
 
-            indexed_types = abi['inputs'].select{|a| a['indexed']}.collect{|a| a['type']}
-            indexed_values = [indexed_types, log.indexed_args].transpose.collect{|arg|
+          if indexed_args.size==indexed_types.size
+
+            indexed_values = [indexed_types, indexed_args].transpose.collect{|arg|
               decode_typed_data( arg.first, [arg.second].pack('H*') )
             }
+
+            not_indexed_values = not_indexed_types.empty? ? [] :
+                                     decode_abi(not_indexed_types, [log_data].pack('H*') )
 
             i = j = 0
 
@@ -73,9 +64,17 @@ module Web3
               input['indexed'] ? (i+=1; indexed_values[i-1]) : (j+=1;not_indexed_values[j-1])
             }
 
+          elsif !indexed_args.empty? || !log_data.empty?
+            all_types = abi['inputs'].collect{|a| a['type']}
+            decode_abi(all_types, [ indexed_args.join + log_data].pack('H*') )
+          else
+            []
           end
 
+        rescue Exception => ex
+          nil
         end
+
 
         def parse_method_args transaction
           d = transaction.call_input_data
