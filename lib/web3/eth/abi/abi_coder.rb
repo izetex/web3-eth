@@ -284,8 +284,12 @@ module Web3::Eth::Abi
         Utils.encode_hex data[12..-1]
       when 'string', 'bytes'
         if type.sub.empty? # dynamic
-          size = Utils.big_endian_to_int data[0,32]
-          data[32..-1][0,size]
+          if data.length==32
+            data[0..32]
+          else
+            size = Utils.big_endian_to_int data[0,32]
+            data[32..-1][0,size]
+          end
         else # fixed
           data[0, type.sub.to_i]
         end
