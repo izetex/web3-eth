@@ -64,7 +64,7 @@ module Web3
 
             indexed_types = abi['inputs'].select{|a| a['indexed']}.collect{|a| a['type']}
             indexed_values = [indexed_types, log.indexed_args].transpose.collect{|arg|
-              decode_abi([arg.first], [arg.second].pack('H*') ).first
+              decode_typed_data( arg.first, [arg.second].pack('H*') )
             }
 
             i = j = 0

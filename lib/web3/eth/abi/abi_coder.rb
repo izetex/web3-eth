@@ -243,6 +243,10 @@ module Web3::Eth::Abi
     end
     alias :decode :decode_abi
 
+    def decode_typed_data type_name, data
+      decode_primitive_type Type.parse(type_name), data
+    end
+
     def decode_type(type, arg)
       if %w(string bytes).include?(type.base) && type.sub.empty?
         l = Utils.big_endian_to_int arg[0,32]
