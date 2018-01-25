@@ -52,6 +52,32 @@ web3 = Web3::Eth::Rpc.new host: 'node.host.com',
 HTTP connection options are from  [Ruby HTTP](https://ruby-doc.org/stdlib-2.4.2/libdoc/net/http/rdoc/Net/HTTP.html)  plus additional optional property
 **rpc_path** - path to RPC interface.
 
+For example, to connect to infura node, you need the following configuration:
+
+```ruby
+web3 = Web3::Eth::Rpc.new host: 'mainnet.infura.io', 
+                          port: 443,  
+                          connect_options: {
+                            open_timeout: 20,
+                            read_timeout: 140,
+                            use_ssl: true,
+                            rpc_path: '/<YOUR INFURA PERSONAL KEY>'
+                          }
+```
+
+or to connect to Ropsten:
+
+
+```ruby
+web3 = Web3::Eth::Rpc.new host: 'ropsten.infura.io', 
+                          port: 443,  
+                          connect_options: {
+                            open_timeout: 20,
+                            read_timeout: 140,
+                            use_ssl: true
+                          }
+```
+
 ### Calling eth interface
 
 ```
