@@ -65,6 +65,15 @@ module Web3
         end
       end
 
+
+      def suicide?
+        type=='suicide'
+      end
+
+      def balance_ether
+        wei_to_ether action['balance'].to_i(16)
+      end
+
     end
   end
 end
