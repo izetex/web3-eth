@@ -50,7 +50,7 @@ module Web3
       end
 
       def creates
-        action['init'] && result['address']
+        action && result && action['init'] && result['address']
       end
 
       # suffix # 0xa1 0x65 'b' 'z' 'z' 'r' '0' 0x58 0x20 <32 bytes swarm hash> 0x00 0x29
