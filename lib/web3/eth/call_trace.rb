@@ -74,6 +74,10 @@ module Web3
         wei_to_ether action['balance'].to_i(16)
       end
 
+      def success?
+        !raw_data['error']
+      end
+
     end
   end
 end
