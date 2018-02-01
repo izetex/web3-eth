@@ -230,7 +230,7 @@ module Web3::Eth::Abi
         j -= 1
       end
 
-      raise DecodingError, "Not enough data for head" unless pos <= data.size
+#      raise DecodingError, "Not enough data for head" unless pos <= data.size
 
       parsed_types.each_with_index do |t, i|
         if t.dynamic?
