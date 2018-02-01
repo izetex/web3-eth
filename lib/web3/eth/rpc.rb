@@ -61,3 +61,11 @@ module Web3
     end
   end
 end
+
+unless Hash.method_defined?(:compact)
+  class Hash
+    def compact
+      self.reject{ |_k, v| v.nil? }
+    end
+  end
+end
