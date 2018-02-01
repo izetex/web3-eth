@@ -39,6 +39,10 @@ module Web3
         from_hex blockNumber
       end
 
+      def value_wei
+        from_hex value
+      end
+
       def value_eth
         wei_to_ether from_hex value
       end

@@ -17,6 +17,10 @@ module Web3
 
       end
 
+      def value_wei
+        from_hex action['value']
+      end
+
       def value_eth
         wei_to_ether from_hex action['value']
       end
