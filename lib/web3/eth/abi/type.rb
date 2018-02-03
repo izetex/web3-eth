@@ -18,6 +18,8 @@ module Web3::Eth::Abi
         raise ParseError, "Unknown characters found in array declaration" if dims.join != dimension
 
         case base
+          when ''
+            return parse 'address'
           when 'string'
             raise ParseError, "String type must have no suffix or numerical suffix" unless sub.empty?
           when 'bytes'
