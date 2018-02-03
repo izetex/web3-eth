@@ -59,8 +59,8 @@ module Web3
 
       CONSTRUCTOR_SEQ = /a165627a7a72305820\w{64}0029(\w*)$/
       def fetch_constructor_data input
-        data = input
-        while d = data[CONSTRUCTOR_SEQ,1]
+        data = input[CONSTRUCTOR_SEQ,1]
+        while data && (d = data[CONSTRUCTOR_SEQ,1])
           data = d
         end
         data
