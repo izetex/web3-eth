@@ -27,7 +27,7 @@ module Web3
       # look http://solidity.readthedocs.io/en/latest/metadata.html for details
       def call_input_data
         if creates && input
-          input[/a165627a7a72305820\w{64}0029(\w*)/,1]
+          fetch_constructor_data input
         elsif input && input.length>10
           input[10..input.length]
         else
@@ -53,6 +53,17 @@ module Web3
 
       def gasPrice_eth
         wei_to_ether from_hex gasPrice
+      end
+
+      private
+
+      CONSTRUCTOR_SEQ = /a165627a7a72305820\w{64}0029(\w*)$/
+      def fetch_constructor_data input
+        data = input
+        while d = data[CONSTRUCTOR_SEQ,1]
+          data = d
+        end
+        data
       end
 
     end
