@@ -15,8 +15,12 @@ module Web3
 
     end
 
+    def has_topics?
+      !!topics.first
+    end
+
     def method_hash
-      topics.first[2..65]
+      topics.first && topics.first[2..65]
     end
 
     def indexed_args
