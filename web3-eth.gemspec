@@ -6,8 +6,8 @@ require 'web3/eth/version'
 Gem::Specification.new do |spec|
   spec.name          = "web3-eth"
   spec.version       = Web3::Eth::VERSION
-  spec.authors       = ["studnev"]
-  spec.email         = ["studnev@izx.io"]
+  spec.authors       = ["studnev", "akitaonrails"]
+  spec.email         = ["studnev@izx.io", "fabioakita@gmail.com"]
 
   spec.summary       = %q{Web3 client to connect to Ethereum node by RPC.}
   spec.description   = %q{Calling RPC methods of Ethereum node with Ruby.}
@@ -28,4 +28,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.14"
   spec.add_development_dependency "rake", "~> 10.0"
   spec.add_development_dependency "minitest", "~> 5.0"
+  spec.add_development_dependency "minitest-vcr", "~> 1.4"
+  spec.add_development_dependency "faraday", "~> 0.14"
+  spec.add_development_dependency "pry", "~> 0.11"
 end

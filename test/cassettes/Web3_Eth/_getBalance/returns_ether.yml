@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://104.155.178.241:8545/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x7f93a3a5060a69dce4d2428d5213ea15c1e0811f","latest"],"id":9011412}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - 104.155.178.241:8545
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 23 Mar 2018 21:55:12 GMT
+      Content-Length:
+      - '60'
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","id":9011412,"result":"0xde0b6b3a7640000"}
+
+'
+    http_version: 
+  recorded_at: Fri, 23 Mar 2018 21:55:12 GMT
+recorded_with: VCR 4.0.0

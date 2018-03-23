@@ -18,15 +18,16 @@ module Web3
 
       def getBlockByNumber block, full = true, convert_to_object = true
         resp = @web3_rpc.request("#{PREFIX}#{__method__}", [hex(block), full])
-        convert_to_object ? Block.new(resp) : resp
+        convert_to_object ? Block.new(resp) : symbolize_keys(resp)
       end
 
       def blockNumber
         from_hex @web3_rpc.request("#{PREFIX}#{__method__}")
       end
 
-      def getTransactionByHash tx_hash
-        Transaction.new @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
+      def getTransactionByHash tx_hash, convert_to_object = true
+        resp = @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
+        convert_to_object ? Transaction.new(resp) : symbolize_keys(resp)
       end
 
       def getTransactionReceipt tx_hash
