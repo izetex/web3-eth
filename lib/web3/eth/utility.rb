@@ -3,7 +3,7 @@ module Web3
 
     module Utility
 
-      def hex num
+      def hex(num)
         '0x' + num.to_s(16)
       end
 
@@ -11,8 +11,12 @@ module Web3
         1.0 * wei / 10**18
       end
 
-      def from_hex h
-        h.to_i 16
+      def ether_to_wei(ether)
+        (ether * 10**18).to_i
+      end
+
+      def from_hex(h)
+        h.to_i(16)
       end
 
       def remove_0x_head(s)
@@ -20,6 +24,7 @@ module Web3
       end
 
       def symbolize_keys(hash)
+        return hash.deep_symbolize_keys if hash.respond_to?(:deep_symbolize_keys)
         hash.inject({}){|result, (key, value)|
           new_key = case key
                     when String then key.to_sym
@@ -35,6 +40,7 @@ module Web3
       end
 
       def to_snakecase(method_name)
+        return method_name.underscore if method_name.respond_to?(:underscore)
         method_name.gsub(/::/, '/').
           gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
           gsub(/([a-z\d])([A-Z])/,'\1_\2').
