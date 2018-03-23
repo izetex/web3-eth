@@ -5,48 +5,47 @@ module Web3
 
       include Web3::Eth::Utility
 
-      PREFIX = 'eth_'
+      PREFIX = 'eth_'.freeze
 
-      def initialize web3_rpc
+      def initialize(web3_rpc)
         @web3_rpc = web3_rpc
       end
 
-      def getBalance address, block = 'latest', convert_to_eth = true
+      def getBalance(address, block = 'latest', convert_to_eth = true)
         wei = @web3_rpc.request("#{PREFIX}#{__method__}", [address, block]).to_i 16
         convert_to_eth ? wei_to_ether(wei) : wei
       end
 
-      def getBlockByNumber block, full = true, convert_to_object = true
+      def getBlockByNumber(block, full = true, convert_to_object = true)
         resp = @web3_rpc.request("#{PREFIX}#{__method__}", [hex(block), full])
-        convert_to_object ? Block.new(resp) : symbolize_keys(resp)
+        convert_to_object ? Block.new(resp) : resp.deep_symbolize_keys
       end
 
       def blockNumber
-        from_hex @web3_rpc.request("#{PREFIX}#{__method__}")
+        from_hex(@web3_rpc.request("#{PREFIX}#{__method__}"))
       end
 
-      def getTransactionByHash tx_hash, convert_to_object = true
+      def getTransactionByHash(tx_hash, convert_to_object = true)
         resp = @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
-        convert_to_object ? Transaction.new(resp) : symbolize_keys(resp)
+        convert_to_object ? Transaction.new(resp) : resp.deep_symbolize_keys
       end
 
-      def getTransactionReceipt tx_hash
-        TransactionReceipt.new @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
+      def getTransactionReceipt(tx_hash, convert_to_object = true)
+        resp = @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
+        convert_to_object ? TransactionReceipt.new(resp) : resp.deep_symbolize_keys
       end
 
-      def contract abi
-        Web3::Eth::Contract.new abi, @web3_rpc
+      def contract(abi)
+        Web3::Eth::Contract.new(abi, @web3_rpc)
       end
 
-      def load_contract etherscan_api, contract_address
+      def load_contract(etherscan_api, contract_address)
         contract(etherscan_api.contract_getabi address: contract_address).at contract_address
       end
 
-
-      def method_missing m, *args
-        @web3_rpc.request "#{PREFIX}#{m}", args[0]
+      def method_missing(m, *args)
+        @web3_rpc.request("#{PREFIX}#{m}", args)
       end
-
 
     end
   end

@@ -11,7 +11,7 @@ module Web3
       def initialize(transaction_data)
         @raw_data = transaction_data
         transaction_data.each do |k, v|
-          k = to_snakecase(k)
+          k = k.underscore
           if HEX_FIELDS.include? k
             self.instance_variable_set("@#{k}", from_hex(v))
           else

@@ -23,30 +23,6 @@ module Web3
         s[0,2] == '0x' ? s[2..-1] : s
       end
 
-      def symbolize_keys(hash)
-        return hash.deep_symbolize_keys if hash.respond_to?(:deep_symbolize_keys)
-        hash.inject({}){|result, (key, value)|
-          new_key = case key
-                    when String then key.to_sym
-                    else key
-                    end
-          new_value = case value
-                      when Hash then symbolize_keys(value)
-                      else value
-                      end
-          result[new_key] = new_value
-          result
-        }
-      end
-
-      def to_snakecase(method_name)
-        return method_name.underscore if method_name.respond_to?(:underscore)
-        method_name.gsub(/::/, '/').
-          gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2').
-          gsub(/([a-z\d])([A-Z])/,'\1_\2').
-          tr("-", "_").
-          downcase
-      end
     end
   end
 end

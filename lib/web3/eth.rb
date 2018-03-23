@@ -1,6 +1,7 @@
 require "web3/eth/version"
 require "web3/eth/abi/abi_coder"
 require "web3/eth/utility"
+require "web3/eth/patches"
 require "web3/eth/block"
 require "web3/eth/transaction"
 require "web3/eth/contract"

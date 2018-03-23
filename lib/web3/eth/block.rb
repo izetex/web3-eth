@@ -4,15 +4,16 @@ module Web3
     class Block
       include Web3::Eth::Utility
 
-      HEX_FIELDS = %w[difficult gasLimit gasUsed nonce number size timestamp totalDifficulty].freeze
+      HEX_FIELDS = %w[difficult gas_limit gas_used nonce number size timestamp total_difficulty].freeze
 
       attr_reader :raw_data, :block_hash
 
       def initialize block_data
-        @raw_data = block_data
-        @block_hash = block_data["hash"]
+        @raw_data   = block_data
+        @block_hash = block_data["hash"] # #hash already exists in Object
 
-        block_data.each do |k, v|
+        @raw_data.each do |k, v|
+          k = k.underscore
           if HEX_FIELDS.include? k
             self.instance_variable_set("@#{k}", from_hex(v))
           else

@@ -1,0 +1,38 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://104.155.178.241:8545/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"eth_getTransactionReceipt","params":["0x4f755679e282e73eb00787a517c932cc2830ea3992392e040a381dcd60da3a7c"],"id":2931687}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - 104.155.178.241:8545
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 23 Mar 2018 22:52:11 GMT
+      Content-Length:
+      - '990'
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","id":2931687,"result":{"blockHash":"0xbd7d044dc04086ad9f79dc79036f9f2ab4ea7ecffa92fe7507307a4ce7f7e913","blockNumber":"0x2bf015","contractAddress":null,"cumulativeGasUsed":"0x106dfc","from":"0x687422eea2cb73b5d3e242ba5456b782919afc85","gasUsed":"0x5208","logs":[],"logsBloom":"0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000","status":"0x1","to":"0x7f93a3a5060a69dce4d2428d5213ea15c1e0811f","transactionHash":"0x4f755679e282e73eb00787a517c932cc2830ea3992392e040a381dcd60da3a7c","transactionIndex":"0x2e"}}
+
+'
+    http_version: 
+  recorded_at: Fri, 23 Mar 2018 22:52:11 GMT
+recorded_with: VCR 4.0.0

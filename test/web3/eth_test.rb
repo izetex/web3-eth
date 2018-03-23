@@ -43,5 +43,25 @@ describe Web3::Eth, vcr: { record: :new_episodes } do
       assert_equal 1000000000000000000, t.value
       assert_equal 1.0, t.value_eth
     end
+
+    it 'returns hash' do
+      t = @web3.eth.getTransactionByHash('0x4f755679e282e73eb00787a517c932cc2830ea3992392e040a381dcd60da3a7c', false)
+      assert_equal "0x2bf015", t[:blockNumber]
+      assert_equal "0xde0b6b3a7640000", t[:value]
+    end
+  end
+
+  describe '#getTransactionReceipt' do
+    it 'returns object' do
+      r = @web3.eth.getTransactionReceipt('0x4f755679e282e73eb00787a517c932cc2830ea3992392e040a381dcd60da3a7c')
+      assert_equal 2879509, r.block_number
+      assert_equal 1076732, r.cumulative_gas_used
+    end
+
+    it 'returns hash' do
+      r = @web3.eth.getTransactionReceipt('0x4f755679e282e73eb00787a517c932cc2830ea3992392e040a381dcd60da3a7c', false)
+      assert_equal "0x2bf015", r[:blockNumber]
+      assert_equal "0x106dfc", r[:cumulativeGasUsed]
+    end
   end
 end
