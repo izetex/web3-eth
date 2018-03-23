@@ -5,7 +5,7 @@ http_interactions:
     uri: http://104.155.178.241:8545/
     body:
       encoding: UTF-8
-      string: '{"jsonrpc":"2.0","method":"eth_blockNumber","id":3695101}'
+      string: '{"jsonrpc":"2.0","method":"eth_blockNumber","id":8949298}'
     headers:
       Content-Type:
       - application/json
@@ -25,14 +25,14 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 23 Mar 2018 21:56:33 GMT
+      - Fri, 23 Mar 2018 23:29:01 GMT
       Content-Length:
       - '51'
     body:
       encoding: UTF-8
-      string: '{"jsonrpc":"2.0","id":3695101,"result":"0x2c368c"}
+      string: '{"jsonrpc":"2.0","id":8949298,"result":"0x2c3846"}
 
 '
     http_version: 
-  recorded_at: Fri, 23 Mar 2018 21:56:33 GMT
+  recorded_at: Fri, 23 Mar 2018 23:29:01 GMT
 recorded_with: VCR 4.0.0

@@ -5,7 +5,7 @@ http_interactions:
     uri: http://104.155.178.241:8545/
     body:
       encoding: UTF-8
-      string: '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x7f93a3a5060a69dce4d2428d5213ea15c1e0811f","latest"],"id":2911551}'
+      string: '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x7f93a3a5060a69dce4d2428d5213ea15c1e0811f","latest"],"id":6752281}'
     headers:
       Content-Type:
       - application/json
@@ -25,14 +25,14 @@ http_interactions:
       Content-Type:
       - application/json
       Date:
-      - Fri, 23 Mar 2018 21:55:09 GMT
+      - Fri, 23 Mar 2018 23:28:38 GMT
       Content-Length:
       - '60'
     body:
       encoding: UTF-8
-      string: '{"jsonrpc":"2.0","id":2911551,"result":"0xde0b6b3a7640000"}
+      string: '{"jsonrpc":"2.0","id":6752281,"result":"0xde0b6b3a7640000"}
 
 '
     http_version: 
-  recorded_at: Fri, 23 Mar 2018 21:55:09 GMT
+  recorded_at: Fri, 23 Mar 2018 23:28:38 GMT
 recorded_with: VCR 4.0.0

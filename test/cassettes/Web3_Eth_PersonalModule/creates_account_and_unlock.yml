@@ -1,0 +1,73 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://104.155.178.241:8545/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"personal_newAccount","params":["helloworld"],"id":6206239}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - 104.155.178.241:8545
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 23 Mar 2018 23:28:22 GMT
+      Content-Length:
+      - '85'
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","id":6206239,"result":"0x243afb7bca93b080013d8d8fd9c306a3518dee66"}
+
+'
+    http_version: 
+  recorded_at: Fri, 23 Mar 2018 23:28:22 GMT
+- request:
+    method: post
+    uri: http://104.155.178.241:8545/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"personal_unlockAccount","params":["0x243afb7bca93b080013d8d8fd9c306a3518dee66","helloworld"],"id":9928184}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - 104.155.178.241:8545
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Fri, 23 Mar 2018 23:31:06 GMT
+      Content-Length:
+      - '45'
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","id":9928184,"result":true}
+
+'
+    http_version: 
+  recorded_at: Fri, 23 Mar 2018 23:31:06 GMT
+recorded_with: VCR 4.0.0

@@ -1,6 +1,6 @@
 require_relative '../test_helper'
 
-describe Web3::Eth, vcr: { record: :new_episodes } do
+describe Web3::Eth::EthModule, vcr: { record: :new_episodes } do
   before do
     @uri  = URI.parse('http://104.155.178.241:8545/')
     @web3 = Web3::Eth::Rpc.new host: @uri.host, port: @uri.port
@@ -32,12 +32,12 @@ describe Web3::Eth, vcr: { record: :new_episodes } do
 
   it '#blockNumber' do
     number = @web3.eth.blockNumber
-    assert_equal 2897548, number
+    assert_equal 2897990, number
   end
 
-  describe '#getTransactionByHash' do
+  describe '#getTransaction' do
     it 'returns object' do
-      t = @web3.eth.getTransactionByHash('0x4f755679e282e73eb00787a517c932cc2830ea3992392e040a381dcd60da3a7c')
+      t = @web3.eth.getTransaction('0x4f755679e282e73eb00787a517c932cc2830ea3992392e040a381dcd60da3a7c')
       assert_equal 2879509, t.block_number
       assert_equal "0x4f755679e282e73eb00787a517c932cc2830ea3992392e040a381dcd60da3a7c", t.hash
       assert_equal 1000000000000000000, t.value
@@ -45,7 +45,7 @@ describe Web3::Eth, vcr: { record: :new_episodes } do
     end
 
     it 'returns hash' do
-      t = @web3.eth.getTransactionByHash('0x4f755679e282e73eb00787a517c932cc2830ea3992392e040a381dcd60da3a7c', false)
+      t = @web3.eth.getTransaction('0x4f755679e282e73eb00787a517c932cc2830ea3992392e040a381dcd60da3a7c', false)
       assert_equal "0x2bf015", t[:blockNumber]
       assert_equal "0xde0b6b3a7640000", t[:value]
     end

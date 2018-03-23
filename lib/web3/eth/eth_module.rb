@@ -25,8 +25,8 @@ module Web3
         from_hex(@web3_rpc.request("#{PREFIX}#{__method__}"))
       end
 
-      def getTransactionByHash(tx_hash, convert_to_object = true)
-        resp = @web3_rpc.request("#{PREFIX}#{__method__}", [tx_hash])
+      def getTransaction(tx_hash, convert_to_object = true)
+        resp = @web3_rpc.request("#{PREFIX}#{__method__}ByHash", [tx_hash])
         convert_to_object ? Transaction.new(resp) : resp.deep_symbolize_keys
       end
 
