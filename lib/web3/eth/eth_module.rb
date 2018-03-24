@@ -12,7 +12,8 @@ module Web3
       end
 
       def getBalance(address, block = 'latest', convert_to_eth = true)
-        wei = @web3_rpc.request("#{PREFIX}#{__method__}", [address, block]).to_i 16
+        wei = @web3_rpc.request("#{PREFIX}#{__method__}", [address, block])
+        wei = from_hex(wei)
         convert_to_eth ? wei_to_ether(wei) : wei
       end
 
@@ -35,6 +36,23 @@ module Web3
         convert_to_object ? TransactionReceipt.new(resp) : resp.deep_symbolize_keys
       end
 
+      def gasPrice(convert_to_eth = true)
+        wei = @web3_rpc.request("#{PREFIX}#{__method__}", [])
+        wei = from_hex(wei)
+        convert_to_eth ? wei_to_ether(wei) : wei
+      end
+
+      # array of hashes {from:, to:, value: (wei), gas:}
+      def sendTransaction(transactions = [], convert_to_wei = true)
+        transactions = Array(transactions)
+        transactions.each do |t|
+          t[:value]    = hex(convert_to_wei ? ether_to_wei(t[:value] || 0) : t[:value])
+          t[:gas]      = hex(t[:gas]) if t[:gas]
+          t[:gasPrice] = hex(convert_to_wei ? ether_to_wei(t[:gasPrice]) : t[:gasPrice]) if t[:gasPrice]
+        end
+        @web3_rpc.request("#{PREFIX}#{__method__}", transactions)
+      end
+
       def contract(abi)
         Web3::Eth::Contract.new(abi, @web3_rpc)
       end
@@ -44,7 +62,7 @@ module Web3
       end
 
       def method_missing(m, *args)
-        @web3_rpc.request("#{PREFIX}#{m}", args)
+        @web3_rpc.request("#{PREFIX}#{m}", args || [])
       end
 
     end

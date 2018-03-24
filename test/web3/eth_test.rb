@@ -64,4 +64,24 @@ describe Web3::Eth::EthModule, vcr: { record: :new_episodes } do
       assert_equal "0x106dfc", r[:cumulativeGasUsed]
     end
   end
+
+  describe '#gasPrice' do
+    it 'in Ether' do
+      price = @web3.eth.gasPrice()
+      assert_equal 0.000000001, price
+    end
+
+    it 'in Wei' do
+      price = @web3.eth.gasPrice(false)
+      assert_equal 1000000000, price
+    end
+  end
+
+  it '#sendTransaction' do
+    from = '0xa04e958880f9b1557694b6aa6274cd111f5183dc'
+    to   = '0x3f61159ce5e39ac27f3541a3f1f7ebb390a77f17'
+    @web3.personal.unlockAccount(from, 'payment')
+    txid = @web3.eth.sendTransaction([{from: from, to: to, value: 0.5, gas: 21_000}])
+    assert_equal '0xd7e6ef89fd9c7a57bc12fc9219d11dd1e25ce0a0440daea894889d991a68109b', txid
+  end
 end

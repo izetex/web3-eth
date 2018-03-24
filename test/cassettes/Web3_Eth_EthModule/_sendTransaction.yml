@@ -1,0 +1,108 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://104.155.178.241:8545/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"personal_unlockAccount","params":["0xa04e958880f9b1557694b6aa6274cd111f5183dc","payment"],"id":3437534}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - 104.155.178.241:8545
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 24 Mar 2018 21:02:36 GMT
+      Content-Length:
+      - '45'
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","id":3437534,"result":true}
+
+'
+    http_version: 
+  recorded_at: Sat, 24 Mar 2018 21:02:37 GMT
+- request:
+    method: post
+    uri: http://104.155.178.241:8545/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"eth_sendTransaction","params":[{"from":"0xa04e958880f9b1557694b6aa6274cd111f5183dc","to":"0x3f61159ce5e39ac27f3541a3f1f7ebb390a77f17","value":"0x6f05b59d3b20000","gas":"0x5208"}],"id":3437534}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - 104.155.178.241:8545
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 24 Mar 2018 21:02:36 GMT
+      Content-Length:
+      - '109'
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","id":3437534,"result":"0xd7e6ef89fd9c7a57bc12fc9219d11dd1e25ce0a0440daea894889d991a68109b"}
+
+'
+    http_version: 
+  recorded_at: Sat, 24 Mar 2018 21:02:37 GMT
+- request:
+    method: post
+    uri: http://104.155.178.241:8545/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"eth_getBalance","params":["0x3f61159ce5e39ac27f3541a3f1f7ebb390a77f17","latest"],"id":9820314}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - 104.155.178.241:8545
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Sat, 24 Mar 2018 21:02:51 GMT
+      Content-Length:
+      - '60'
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","id":9820314,"result":"0xde0b6b3a7640000"}
+
+'
+    http_version: 
+  recorded_at: Sat, 24 Mar 2018 21:02:51 GMT
+recorded_with: VCR 4.0.0
