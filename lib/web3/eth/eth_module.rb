@@ -42,7 +42,7 @@ module Web3
         convert_to_eth ? wei_to_ether(wei) : wei
       end
 
-      # array of hashes {from:, to:, value: (wei), gas:}
+      # array of hashes {from:, to:, value: (ether), gas:, gasPrice: (ether)}
       def sendTransaction(transactions = [], convert_to_wei = true)
         transactions = Array(transactions)
         transactions.each do |t|
