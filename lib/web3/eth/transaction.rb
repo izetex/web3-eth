@@ -46,7 +46,7 @@ module Web3
       end
 
       def gas_price_eth
-        wei_to_ether gasPrice
+        wei_to_ether gas_price
       end
 
       private
