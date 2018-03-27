@@ -2,15 +2,21 @@ module Web3
   module Eth
 
     class Transaction
-
       include Web3::Eth::Utility
+
+      HEX_FIELDS = %w[gas gas_price nonce transaction_index value block_number].freeze
 
       attr_reader :raw_data
 
-      def initialize transaction_data
+      def initialize(transaction_data)
         @raw_data = transaction_data
         transaction_data.each do |k, v|
-          self.instance_variable_set("@#{k}", v)
+          k = k.underscore
+          if HEX_FIELDS.include? k
+            self.instance_variable_set("@#{k}", from_hex(v))
+          else
+            self.instance_variable_set("@#{k}", v)
+          end
           self.class.send(:define_method, k, proc {self.instance_variable_get("@#{k}")})
         end
       end
@@ -35,24 +41,12 @@ module Web3
         end
       end
 
-      def block_number
-        from_hex blockNumber
-      end
-
-      def value_wei
-        from_hex value
-      end
-
       def value_eth
-        wei_to_ether from_hex value
+        wei_to_ether value
       end
 
-      def gas_limit
-        from_hex gas
-      end
-
-      def gasPrice_eth
-        wei_to_ether from_hex gasPrice
+      def gas_price_eth
+        wei_to_ether gas_price
       end
 
       private

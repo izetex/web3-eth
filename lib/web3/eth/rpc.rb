@@ -1,6 +1,17 @@
 module Web3
   module Eth
 
+    class RpcError < RuntimeError
+      attr_reader :code, :input, :response
+
+      def initialize(message = '', code = nil, input = nil, response = nil)
+        super(message)
+        @code = code
+        @input = input
+        @response = response
+      end
+    end
+
     class Rpc
 
       require 'json'
@@ -17,7 +28,7 @@ module Web3
       DEFAULT_HOST = 'localhost'
       DEFAULT_PORT = 8545
 
-      attr_reader :eth, :trace
+      attr_reader :eth, :personal, :trace
 
       def initialize host: DEFAULT_HOST, port: DEFAULT_PORT, connect_options: DEFAULT_CONNECT_OPTIONS
 
@@ -27,6 +38,7 @@ module Web3
         @connect_options = connect_options
 
         @eth = EthModule.new self
+        @personal = PersonalModule.new self
         @trace = TraceModule.new self
 
       end
@@ -48,24 +60,15 @@ module Web3
           if body['result']
             body['result']
           elsif body['error']
-            raise "Error #{@uri.to_s} #{body['error']} on request #{@uri.to_s} #{request.body}"
+            raise RpcError.new(body['error']['message'], body['error']['code'], request.body, body['error'])
           else
-            raise "No response on request #{@uri.to_s} #{request.body}"
+            raise RpcError.new("No response on request", -1, request.body, body)
           end
 
         end
 
       end
-
-
     end
   end
 end
 
-unless Hash.method_defined?(:compact)
-  class Hash
-    def compact
-      self.reject{ |_k, v| v.nil? }
-    end
-  end
-end

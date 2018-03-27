@@ -3,7 +3,7 @@ module Web3
 
     module Utility
 
-      def hex num
+      def hex(num)
         '0x' + num.to_s(16)
       end
 
@@ -11,8 +11,12 @@ module Web3
         1.0 * wei / 10**18
       end
 
-      def from_hex h
-        h.to_i 16
+      def ether_to_wei(ether)
+        (ether * 10**18).to_i
+      end
+
+      def from_hex(h)
+        h.to_i(16)
       end
 
       def remove_0x_head(s)
