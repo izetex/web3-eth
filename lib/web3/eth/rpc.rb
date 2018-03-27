@@ -1,6 +1,17 @@
 module Web3
   module Eth
 
+    class RpcError < RuntimeError
+      attr_reader :code, :input, :response
+
+      def initialize(message = '', code = nil, input = nil, response = nil)
+        super(message)
+        @code = code
+        @input = input
+        @response = response
+      end
+    end
+
     class Rpc
 
       require 'json'
@@ -49,9 +60,9 @@ module Web3
           if body['result']
             body['result']
           elsif body['error']
-            raise "Error #{@uri.to_s} #{body['error']} on request #{@uri.to_s} #{request.body}"
+            raise RpcError.new(body['error']['message'], body['error']['code'], request.body, body['error'])
           else
-            raise "No response on request #{@uri.to_s} #{request.body}"
+            raise RpcError.new("No response on request", -1, request.body, body)
           end
 
         end
