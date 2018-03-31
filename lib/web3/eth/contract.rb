@@ -95,7 +95,7 @@ module Web3
 
       end
 
-      attr_reader :web3_rpc, :abi, :functions, :events, :constructor
+      attr_reader :web3_rpc, :abi, :functions, :events, :constructor, :functions_by_hash, :events_by_hash
 
       def initialize abi, web_rpc = nil
         @web3_rpc = web_rpc
@@ -115,11 +115,11 @@ module Web3
       end
 
       def find_event_by_hash method_hash
-        events.values.detect{|e| e.signature_hash==method_hash}
+        @events_by_hash[method_hash]
       end
 
       def find_function_by_hash method_hash
-        functions.values.detect{|e| e.signature_hash==method_hash}
+        @functions_by_hash[method_hash]
       end
 
       def parse_log_args log
@@ -142,9 +142,25 @@ module Web3
       private
 
       def parse_abi abi
-        @functions = Hash[abi.select{|a| a['type']=='function'}.map{|a| [a['name'], ContractMethod.new(a)]}]
-        @events = Hash[abi.select{|a| a['type']=='event'}.map{|a| [a['name'], ContractMethod.new(a)]}]
-        @constructor = (constructor = abi.detect{|a| a['type']=='constructor'}) && ContractMethod.new(constructor)
+        @functions = {}
+        @events = {}
+
+        @functions_by_hash = {}
+        @events_by_hash = {}
+
+        abi.each{|a|
+          method = ContractMethod.new(a)
+          case a['type']
+            when 'function'
+              @functions[method.name] = method
+              @functions_by_hash[method.signature_hash] = method
+            when 'event'
+              @events[method.name] = method
+              @events_by_hash[method.signature_hash] = method
+            when 'constructor'
+              @constructor = method
+          end
+        }
       end
 
     end
