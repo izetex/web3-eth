@@ -36,7 +36,9 @@ module Web3
       end
 
       def block_number
-        from_hex blockNumber
+        # if transaction is less than 12 seconds old, blockNumber will be nil
+        # :. nil check before calling `to_hex` to avoid argument error
+        blockNumber && from_hex(blockNumber)
       end
 
       def value_wei
