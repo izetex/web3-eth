@@ -149,15 +149,18 @@ module Web3
         @events_by_hash = {}
 
         abi.each{|a|
-          method = ContractMethod.new(a)
+
           case a['type']
             when 'function'
+              method = ContractMethod.new(a)
               @functions[method.name] = method
               @functions_by_hash[method.signature_hash] = method
             when 'event'
+              method = ContractMethod.new(a)
               @events[method.name] = method
               @events_by_hash[method.signature_hash] = method
             when 'constructor'
+              method = ContractMethod.new(a)
               @constructor = method
           end
         }
