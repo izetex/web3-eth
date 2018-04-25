@@ -61,6 +61,10 @@ module Web3
         contract(etherscan_api.contract_getabi address: contract_address).at contract_address
       end
 
+      def accounts
+        @web3_rpc.request("#{PREFIX}#{__method__}")
+      end
+
       def method_missing(m, *args)
         @web3_rpc.request("#{PREFIX}#{m}", args || [])
       end
