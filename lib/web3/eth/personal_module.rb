@@ -15,8 +15,8 @@ module Web3
         @web3_rpc.request("#{PREFIX}#{__method__}", [passphrase])
       end
 
-      def unlockAccount(account, passphrase = '')
-        @web3_rpc.request("#{PREFIX}#{__method__}", [account, passphrase])
+      def unlockAccount(account, passphrase = '', timeout = 30)
+        @web3_rpc.request("#{PREFIX}#{__method__}", [account, passphrase, timeout])
       end
     end
   end
