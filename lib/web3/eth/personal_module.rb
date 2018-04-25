@@ -18,6 +18,15 @@ module Web3
       def unlockAccount(account, passphrase = '', timeout = 30)
         @web3_rpc.request("#{PREFIX}#{__method__}", [account, passphrase, timeout])
       end
+
+      # {from:, to:, value: (ether), gas:, gasPrice: (ether)}
+      def sendTransaction(transaction, passphrase = '', convert_to_wei = true)
+        transaction[:value]    = hex(convert_to_wei ? ether_to_wei(transaction[:value] || 0) : transaction[:value])
+        transaction[:gas]      = hex(transaction[:gas]) if transaction[:gas]
+        transaction[:gasPrice] = hex(convert_to_wei ? ether_to_wei(transaction[:gasPrice]) : transaction[:gasPrice]) if transaction[:gasPrice]
+
+        @web3_rpc.request("#{PREFIX}#{__method__}", [transaction, passphrase])
+      end
     end
   end
 end

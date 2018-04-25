@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: http://localhost:7545/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"personal_sendTransaction","params":[{"from":"0xD6ae577521b30C0e6FC0F7Cb0ef30F4e75F059E5","to":"0xD32C24Cf81d182A52984f9a0FfF68359b915fB60","value":"0x16345785d8a0000","gas":"0x5208"},"payment"],"id":6069754}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - localhost:7545
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Apr 2018 11:38:03 GMT
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":6069754,"jsonrpc":"2.0","result":"0xd977bb5c074afec552bb6b06449283eb00f333bf4deb1e121aa4b1103a6a6c10"}'
+    http_version: 
+  recorded_at: Wed, 25 Apr 2018 11:38:03 GMT
+recorded_with: VCR 4.0.0

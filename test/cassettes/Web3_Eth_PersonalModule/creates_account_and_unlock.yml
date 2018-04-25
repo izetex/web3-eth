@@ -70,4 +70,86 @@ http_interactions:
 '
     http_version: 
   recorded_at: Fri, 23 Mar 2018 23:31:06 GMT
+- request:
+    method: post
+    uri: http://localhost:7545/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"personal_newAccount","params":["helloworld"],"id":8961343}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - localhost:7545
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Apr 2018 11:37:04 GMT
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":8961343,"jsonrpc":"2.0","result":"0xf0edab4b6ce0dce5ea5b750e4af77a92249d5fa6"}'
+    http_version: 
+  recorded_at: Wed, 25 Apr 2018 11:37:04 GMT
+- request:
+    method: post
+    uri: http://localhost:7545/
+    body:
+      encoding: UTF-8
+      string: '{"jsonrpc":"2.0","method":"personal_unlockAccount","params":["0xf0edab4b6ce0dce5ea5b750e4af77a92249d5fa6","helloworld",30],"id":4401739}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - localhost:7545
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Origin, X-Requested-With, Content-Type, Accept
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - "*"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 25 Apr 2018 11:37:39 GMT
+      Connection:
+      - keep-alive
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: UTF-8
+      string: '{"id":4401739,"jsonrpc":"2.0","result":true}'
+    http_version: 
+  recorded_at: Wed, 25 Apr 2018 11:37:39 GMT
 recorded_with: VCR 4.0.0
