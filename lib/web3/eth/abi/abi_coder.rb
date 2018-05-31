@@ -269,7 +269,7 @@ module Web3::Eth::Abi
           (0...l).map {|i| decode_type(subtype, arg[32 + subtype.size*i, subtype.size]) }
         end
       elsif !type.dims.empty? # static-sized arrays
-        l = type.dims.last[0]
+        l = type.dims.last
         subtype = type.subtype
 
         (0...l).map {|i| decode_type(subtype, arg[subtype.size*i, subtype.size]) }
