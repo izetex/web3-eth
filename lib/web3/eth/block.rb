@@ -7,7 +7,7 @@ module Web3
 
       attr_reader :raw_data
 
-      def initialize block_data
+      def initialize block_data, full = true
         @raw_data = block_data
 
         block_data.each do |k, v|
@@ -15,7 +15,9 @@ module Web3
           self.class.send(:define_method, k, proc {self.instance_variable_get("@#{k}")})
         end
 
-        @transactions = @transactions.collect {|t|  Web3::Eth::Transaction.new t }
+        if full
+          @transactions = @transactions.collect {|t|  Web3::Eth::Transaction.new t }
+        end
 
       end
 
