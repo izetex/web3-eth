@@ -82,9 +82,10 @@ module Web3
         end
 
         def do_call web3_rpc, contract_address, args
-          data = '0x' + signature_hash + encode_hex(encode_abi(input_types, args) )
+          blockno = args[-1] || "latest"
+          data = '0x' + signature_hash + encode_hex(encode_abi(input_types, args - [blockno]))
 
-          response = web3_rpc.request "eth_call", [{ to: contract_address, data: data}, 'latest']
+          response = web3_rpc.request "eth_call", [{ to: contract_address, data: data}, blockno]
 
           string_data = [remove_0x_head(response)].pack('H*')
           return nil if string_data.empty?
