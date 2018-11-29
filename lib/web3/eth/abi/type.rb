@@ -12,6 +12,11 @@ module Web3::Eth::Abi
       # 256, 128x128, nil), array component (eg. [], [45], nil)
       #
       def parse(type)
+
+        if type =~ /^\((.*)\)((\[[0-9]*\])*)/
+          return Tuple.new $1.split(','), $2.scan(/\[[0-9]*\]/)
+        end
+
         _, base, sub, dimension = /([a-z]*)([0-9]*x?[0-9]*)((\[[0-9]*\])*)/.match(type).to_a
 
         dims = dimension.scan(/\[[0-9]*\]/)
@@ -115,4 +120,26 @@ module Web3::Eth::Abi
     end
 
   end
+
+  class Tuple < Type
+
+    attr_reader :types
+    def initialize types, dims
+      super('tuple', '', dims)
+      @types = types
+    end
+
+    def ==(another_type)
+      another_type.kind_of?(Tuple) &&
+          another_type.types == types &&
+          another_type.dims == dims
+    end
+
+    def size
+      nil
+    end
+
+
+  end
+
 end

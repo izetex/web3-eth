@@ -248,7 +248,9 @@ module Web3::Eth::Abi
     end
 
     def decode_type(type, arg)
-      if %w(string bytes).include?(type.base) && type.sub.empty?
+      if type.kind_of?(Tuple)
+        decode_abi(type.types, arg)
+      elsif %w(string bytes).include?(type.base) && type.sub.empty?
         l = Utils.big_endian_to_int arg[0,32]
         data = arg[32..-1]
         data[0, l]

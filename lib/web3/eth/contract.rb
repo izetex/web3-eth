@@ -35,10 +35,18 @@ module Web3
           @abi = abi
           @name = abi['name']
           @constant = !!abi['constant']
-          @input_types = abi['inputs'].map{|a| a['type']}
-          @output_types = abi['outputs'].map{|a| a['type']} if abi['outputs']
+          @input_types = abi['inputs'].map{|a| parse_component_type a }
+          @output_types = abi['outputs'].map{|a| parse_component_type a } if abi['outputs']
           @signature = Abi::Utils.function_signature @name, @input_types
           @signature_hash = Abi::Utils.signature_hash @signature, (abi['type']=='event' ? 64 : 8)
+        end
+
+        def parse_component_type argument
+          if argument['type']=='tuple'
+            argument['components'] ? "(#{argument['components'].collect{|c| c['type'] }.join(',')})" : '()'
+          else
+            argument['type']
+          end
         end
 
         def parse_event_args log

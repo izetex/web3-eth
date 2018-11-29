@@ -7,7 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = "web3-eth"
   spec.version       = Web3::Eth::VERSION
   spec.authors       = ["studnev"]
-  spec.email         = ["studnev@izx.io"]
+  spec.email         = ["aleksey@bloxy.info"]
 
   spec.summary       = %q{Web3 client to connect to Ethereum node by RPC.}
   spec.description   = %q{Calling RPC methods of Ethereum node with Ruby.}
