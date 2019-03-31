@@ -43,7 +43,7 @@ module Web3
 
         def parse_component_type argument
           if argument['type']=~/^tuple((\[[0-9]*\])*)/
-            argument['components'] ? "(#{argument['components'].collect{|c| parse_component_type c['type'] }.join(',')})#{$1}" : "()#{$1}"
+            argument['components'] ? "(#{argument['components'].collect{|c| parse_component_type c }.join(',')})#{$1}" : "()#{$1}"
           else
             argument['type']
           end
