@@ -248,7 +248,8 @@ module Web3::Eth::Abi
     end
 
     def decode_type(type, arg)
-      if type.kind_of?(Tuple)
+      return nil if arg.nil?
+      if type.kind_of?(Tuple) && type.dims.empty?
         arg ? decode_abi(type.types, arg) : []
       elsif %w(string bytes).include?(type.base) && type.sub.empty?
         l = Utils.big_endian_to_int arg[0,32]
@@ -261,7 +262,7 @@ module Web3::Eth::Abi
         if subtype.dynamic?
           raise DecodingError, "Not enough data for head" unless arg.size >= 32 + 32*l
 
-          start_positions = (1..l).map {|i| Utils.big_endian_to_int arg[32*i, 32] }
+          start_positions = (1..l).map {|i| 32+Utils.big_endian_to_int(arg[32*i, 32]) }
           start_positions.push arg.size
 
           outputs = (0...l).map {|i| arg[start_positions[i]...start_positions[i+1]] }

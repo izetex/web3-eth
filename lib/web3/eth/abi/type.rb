@@ -139,6 +139,9 @@ module Web3::Eth::Abi
       nil
     end
 
+    def subtype
+      @subtype ||= Tuple.new(types, dims[0...-1])
+    end
 
   end
 
