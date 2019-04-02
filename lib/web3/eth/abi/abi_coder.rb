@@ -235,7 +235,9 @@ module Web3::Eth::Abi
       parsed_types.each_with_index do |t, i|
         if t.dynamic?
           offset, next_offset = start_positions[i, 2]
-          outputs[i] = data[offset...next_offset]
+          if offset<=data.size && next_offset<=data.size
+            outputs[i] = data[offset...next_offset]
+          end
         end
       end
 
