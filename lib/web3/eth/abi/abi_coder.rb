@@ -248,7 +248,7 @@ module Web3::Eth::Abi
     end
 
     def decode_type(type, arg)
-      return nil if arg.nil?
+      return nil if arg.nil? || arg.empty?
       if type.kind_of?(Tuple) && type.dims.empty?
         arg ? decode_abi(type.types, arg) : []
       elsif %w(string bytes).include?(type.base) && type.sub.empty?
