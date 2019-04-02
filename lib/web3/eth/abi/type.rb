@@ -14,7 +14,7 @@ module Web3::Eth::Abi
       def parse(type)
 
         if type =~ /^\((.*)\)((\[[0-9]*\])*)/
-          return Tuple.new $1.split(','), $2.scan(/\[[0-9]*\]/)
+          return Tuple.parse $1, $2.scan(/\[[0-9]*\]/)
         end
 
         _, base, sub, dimension = /([a-z]*)([0-9]*x?[0-9]*)((\[[0-9]*\])*)/.match(type).to_a
@@ -123,10 +123,43 @@ module Web3::Eth::Abi
 
   class Tuple < Type
 
-    attr_reader :types
+    def self.parse types, dims
+
+      depth = 0
+      collected = []
+      current = ''
+
+      types.split('').each do |c|
+        case c
+          when ',' then
+            if depth==0
+              collected << current
+              current = ''
+            else
+              current += c
+            end
+          when '(' then
+            depth += 1
+            current += c
+          when ')' then
+            depth -= 1
+            current += c
+          else
+            current += c
+        end
+
+      end
+      collected << current unless current.empty?
+
+      Tuple.new collected, dims
+
+    end
+
+    attr_reader :types, :parsed_types
     def initialize types, dims
-      super('tuple', '', dims)
+      super('tuple', '', dims.map {|x| x[1...-1].to_i})
       @types = types
+      @parsed_types = types.map{|t| Type.parse t}
     end
 
     def ==(another_type)
@@ -136,7 +169,27 @@ module Web3::Eth::Abi
     end
 
     def size
-      nil
+      @size ||= calculate_size
+    end
+
+    def calculate_size
+      if dims.empty?
+        s = 0
+        parsed_types.each do |type|
+          ts = type.size
+          return nil if ts.nil?
+          s += ts
+        end
+        s
+      else
+        if dims.last == 0 # 0 for dynamic array []
+          nil
+        else
+          subtype.dynamic? ? nil : dims.last * subtype.size
+        end
+      end
+
+
     end
 
     def subtype
