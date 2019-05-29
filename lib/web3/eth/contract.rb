@@ -103,6 +103,52 @@ module Web3
 
       end
 
+      class ContractConstructor < ContractMethod
+
+        def initialize abi
+          super abi
+        end
+
+        def parse_method_args transaction
+          return [] if input_types.empty?
+
+          input = transaction.input
+
+          d = fetch_constructor_data input
+          result = (d && !d.empty? && try_parse(d))
+
+          unless result
+            start = input.length-1-min_data_size(input_types)
+            while start>=0 && !result
+              result = try_parse input, start
+              start -= 1
+            end
+          end
+
+          result
+        end
+
+        private
+
+        CONSTRUCTOR_SEQ = /a165627a7a72305820\w{64}0029(\w*)$/
+        def fetch_constructor_data input
+          data = input[CONSTRUCTOR_SEQ,1]
+          while data && (d = data[CONSTRUCTOR_SEQ,1])
+            data = d
+          end
+          data
+        end
+
+        def try_parse input, start = 0
+          d = start==0  ? input : input.slice(start, input.length-start-1)
+          decode_abi input_types, [d].pack('H*'), true
+        rescue Exception => err
+          nil
+        end
+
+      end
+
+
       attr_reader :web3_rpc, :abi, :functions, :events, :constructor, :functions_by_hash, :events_by_hash
 
       def initialize abi, web_rpc = nil
@@ -168,8 +214,7 @@ module Web3
               @events[method.name] = method
               @events_by_hash[method.signature_hash] = method
             when 'constructor'
-              method = ContractMethod.new(a)
-              @constructor = method
+              @constructor = ContractConstructor.new(a)
           end
         }
       end

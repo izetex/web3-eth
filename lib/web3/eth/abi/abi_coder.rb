@@ -192,10 +192,15 @@ module Web3::Eth::Abi
       end
     end
 
+
+    def min_data_size types
+      types.size*32
+    end
+    
     ##
     # Decodes multiple arguments using the head/tail mechanism.
     #
-    def decode_abi(types, data)
+    def decode_abi types, data, raise_errors = false
       parsed_types = types.map {|t| Type.parse(t) }
 
       outputs = [nil] * types.size
@@ -207,7 +212,16 @@ module Web3::Eth::Abi
         # If a type is static, grab the data directly, otherwise record its
         # start position
         if t.dynamic?
+
+          if raise_errors && pos>data.size-1
+            raise DecodingError, "Position out of bounds #{pos}>#{data.size-1}"
+          end
+
           start_positions[i] = Utils.big_endian_to_int(data[pos, 32])
+
+          if raise_errors && start_positions[i]>data.size-1
+            raise DecodingError, "Start position out of bounds #{start_positions[i]}>#{data.size-1}"
+          end
 
           j = i - 1
           while j >= 0 && start_positions[j].nil?
@@ -230,7 +244,10 @@ module Web3::Eth::Abi
         j -= 1
       end
 
-#      raise DecodingError, "Not enough data for head" unless pos <= data.size
+      if raise_errors && pos > data.size
+        raise DecodingError, "Not enough data for head"
+      end
+
 
       parsed_types.each_with_index do |t, i|
         if t.dynamic?
@@ -239,6 +256,10 @@ module Web3::Eth::Abi
             outputs[i] = data[offset...next_offset]
           end
         end
+      end
+
+      if raise_errors && outputs.include?(nil)
+        raise DecodingError, "Not all data can be parsed"
       end
 
       parsed_types.zip(outputs).map {|(type, out)| decode_type(type, out) }
