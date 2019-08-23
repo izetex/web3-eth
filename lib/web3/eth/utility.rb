@@ -16,6 +16,7 @@ module Web3
       end
 
       def remove_0x_head(s)
+        return s if !s || s.length<2
         s[0,2] == '0x' ? s[2..-1] : s
       end
 
