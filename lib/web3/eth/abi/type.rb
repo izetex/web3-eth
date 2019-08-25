@@ -25,9 +25,7 @@ module Web3::Eth::Abi
         case base
           when ''
             return parse 'address'
-          when 'string'
-            raise ParseError, "String type must have no suffix or numerical suffix" unless sub.empty?
-          when 'bytes'
+          when 'bytes', 'string'
             raise ParseError, "Maximum 32 bytes for fixed-length string or bytes" unless sub.empty? || sub.to_i <= 32
           when 'uint', 'int'
             raise ParseError, "Integer type must have numerical suffix" unless sub =~ /\A[0-9]+\z/
