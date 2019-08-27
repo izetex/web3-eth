@@ -13,6 +13,8 @@ module Web3::Eth::Abi
       #
       def parse(type)
 
+        return parse('uint256') if type=='trcToken'
+        
         if type =~ /^\((.*)\)((\[[0-9]*\])*)/
           return Tuple.parse $1, $2.scan(/\[[0-9]*\]/)
         end
