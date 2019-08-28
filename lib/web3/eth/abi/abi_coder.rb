@@ -280,7 +280,7 @@ module Web3::Eth::Abi
         data[0, l]
       elsif type.dynamic?
         l = Utils.big_endian_to_int arg[0,32]
-        raise DecodingError, "Too long length: #{l}" if l>1000
+        raise DecodingError, "Too long length: #{l}" if l>100000
         subtype = type.subtype
 
         if subtype.dynamic?
