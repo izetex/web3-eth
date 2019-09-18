@@ -42,7 +42,8 @@ module Web3::Eth::Abi
             total = high + low
 
             raise ParseError, "Fixed size out of bounds (max 32 bytes)" unless total >= 8 && total <= 256
-            raise ParseError, "Fixed high/low sizes must be multiples of 8" unless high % 8 == 0 && low % 8 == 0
+            raise ParseError, "Fixed high size must be multiple of 8" unless high % 8 == 0
+            raise ParseError, "Low sizes must be 0 to 80" unless low>0 && low<=80
           when 'hash'
             raise ParseError, "Hash type must have numerical suffix" unless sub =~ /\A[0-9]+\z/
           when 'address'
