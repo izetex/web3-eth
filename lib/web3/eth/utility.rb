@@ -12,7 +12,7 @@ module Web3
       end
 
       def from_hex h
-        h.to_i 16
+        h.nil? ? 0 : h.to_i(16)
       end
 
       def remove_0x_head(s)

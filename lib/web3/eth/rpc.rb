@@ -32,6 +32,11 @@ module Web3
       end
 
 
+      def debug
+        Debug::DebugModule.new self
+      end
+
+
       def request method, params = nil
 
 
