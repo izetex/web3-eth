@@ -20,6 +20,14 @@ module Web3::Eth::Debug
         (type=='CREATE' || type=='CREATE2') ? to : nil
       end
 
+      def method_hash
+        if input && input.length>=10
+          input[2...10]
+        else
+          nil
+        end
+      end
+
       def suicide?
         type=='SELFDESTRUCT'
       end
