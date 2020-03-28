@@ -55,6 +55,15 @@ module Web3
         wei_to_ether from_hex gasPrice
       end
 
+      def gasPrice_weth
+        from_hex gasPrice
+      end
+
+
+      def transaction_nonce
+        from_hex nonce
+      end
+
 
     end
   end

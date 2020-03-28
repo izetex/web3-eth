@@ -27,6 +27,30 @@ module Web3
         from_hex number
       end
 
+      def block_difficulty
+        from_hex difficulty
+      end
+
+      def block_gasLimit
+        from_hex gasLimit
+      end
+
+      def block_gasUsed
+        from_hex gasUsed
+      end
+
+      def block_nonce
+        from_hex nonce
+      end
+
+      def block_size
+        from_hex size
+      end
+
+      def block_totalDifficulty
+        from_hex totalDifficulty
+      end
+
     end
 
   end
