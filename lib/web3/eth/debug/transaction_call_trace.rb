@@ -16,6 +16,13 @@ module Web3::Eth::Debug
         raw_data['type']
       end
 
+      def action
+        {
+            'callType' => type.downcase,
+            'address' => raw_data['to']
+        }
+      end
+
       def creates
         (type=='CREATE' || type=='CREATE2') ? to : nil
       end
