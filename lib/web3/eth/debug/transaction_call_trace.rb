@@ -9,7 +9,7 @@ module Web3::Eth::Debug
         @raw_data = raw
         @traceAddress = traceAddress
         @parent = parent
-        @calls = raw['calls'] ? raw['calls'].each_with_index.map{|c,i| TransactionCallTrace.new c, (traceAddress + [i]), parent } : []
+        @calls = raw['calls'] ? raw['calls'].each_with_index.map{|c,i| TransactionCallTrace.new c, (traceAddress + [i]), self } : []
       end
 
       # CALL STATICCALL DELEGATECALL CREATE SELFDESTRUCT
