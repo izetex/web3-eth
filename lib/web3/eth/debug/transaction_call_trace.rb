@@ -25,7 +25,7 @@ module Web3::Eth::Debug
       end
 
       def smart_contract
-        ['DELEGATECALL','CALL'].include?(type) ? to : from
+        ['STATICCALL','CALL'].include?(type) ? to : from
       end
 
       def creates
