@@ -4,11 +4,12 @@ module Web3::Eth::Debug
 
       include Web3::Eth::Utility
 
-      attr_reader :raw_data, :calls, :traceAddress
-      def initialize raw, traceAddress = []
+      attr_reader :raw_data, :calls, :traceAddress, :parent
+      def initialize raw, traceAddress = [], parent = nil
         @raw_data = raw
         @traceAddress = traceAddress
-        @calls = raw['calls'] ? raw['calls'].each_with_index.map{|c,i| TransactionCallTrace.new c, (traceAddress + [i]) } : []
+        @parent = parent
+        @calls = raw['calls'] ? raw['calls'].each_with_index.map{|c,i| TransactionCallTrace.new c, (traceAddress + [i]), parent } : []
       end
 
       # CALL STATICCALL DELEGATECALL CREATE SELFDESTRUCT
@@ -19,8 +20,12 @@ module Web3::Eth::Debug
       def action
         {
             'callType' => type.downcase,
-            'address' => raw_data['to']
+            'address' => ( suicide? ? parent.smart_contract : raw_data['to'])
         }
+      end
+
+      def smart_contract
+        ['DELEGATECALL','CALL'].include?(type) ? to : from
       end
 
       def creates
