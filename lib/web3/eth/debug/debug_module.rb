@@ -16,7 +16,10 @@ module Web3::Eth::Debug
       end
 
       def traceBlockByNumber number, tracer = 'callTracer',  convert_to_object = true
-        raw = @web3_rpc.request("#{PREFIX}#{__method__}", [hex(number), {tracer: tracer}])
+        timeout = @web3_rpc.connect_options[:read_timeout] || 120
+        raw = @web3_rpc.request("#{PREFIX}#{__method__}", [hex(number), {tracer: tracer,
+                                                                         timeout: "#{timeout}s"}])
+        raise raw.first['error'] if (raw.first && raw.first['error'])
         convert_to_object ? raw.map{|r| TransactionCallTrace.new(r['result'])} : raw
       end
 
