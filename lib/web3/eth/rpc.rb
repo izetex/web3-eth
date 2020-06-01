@@ -17,7 +17,7 @@ module Web3
       DEFAULT_HOST = 'localhost'
       DEFAULT_PORT = 8545
 
-      attr_reader :eth, :trace, :connect_options
+      attr_reader :eth, :connect_options
 
       def initialize host: DEFAULT_HOST, port: DEFAULT_PORT, connect_options: DEFAULT_CONNECT_OPTIONS
 
@@ -27,15 +27,20 @@ module Web3
         @connect_options = connect_options
 
         @eth = EthModule.new self
-        @trace = TraceModule.new self
 
       end
 
+      def trace
+        @trace ||= TraceModule.new(self)
+      end
+
+      def parity
+        @parity ||= ParityModule.new(self)
+      end
 
       def debug
-        Debug::DebugModule.new self
+        @debug ||= Debug::DebugModule.new(self)
       end
-
 
       def request method, params = nil
 
