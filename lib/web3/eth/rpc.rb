@@ -53,7 +53,7 @@ module Web3
 
           raise "Error code #{response.code} on request #{@uri.to_s} #{request.body}" unless response.kind_of? Net::HTTPOK
 
-          body = JSON.parse(response.body)
+          body = JSON.parse(response.body, max_nesting: 1500)
 
           if body['result']
             body['result']
