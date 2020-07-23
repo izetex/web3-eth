@@ -231,7 +231,7 @@ module Web3::Eth::Abi
 
           pos += 32
         else
-          outputs[i] = data[pos, t.size]
+          outputs[i] = zero_padding data, pos, t.size, start_positions
           pos += t.size
         end
       end
@@ -265,6 +265,18 @@ module Web3::Eth::Abi
       parsed_types.zip(outputs).map {|(type, out)| decode_type(type, out) }
     end
     alias :decode :decode_abi
+
+    def zero_padding data, pos, count, start_positions
+      if pos >= data.size
+        start_positions[start_positions.size-1] += count
+        "\x00"*count
+      elsif pos + count > data.size
+        start_positions[start_positions.size-1] += ( count - (data.size-pos))
+        data[pos,data.size-pos] + "\x00"*( count - (data.size-pos))
+      else
+        data[pos, count]
+      end
+    end
 
     def decode_typed_data type_name, data
       decode_primitive_type Type.parse(type_name), data
