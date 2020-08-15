@@ -38,6 +38,7 @@ module Web3
         Net::HTTP.start(@uri.host, @uri.port, @connect_options) do |http|
 
           request = Net::HTTP::Post.new @uri, {"Content-Type" => "application/json"}
+          request.basic_auth(@uri.user, @uri.password) if @uri.user && @uri.password
           request.body = {:jsonrpc => JSON_RPC_VERSION, method: method, params: params, id: @client_id}.compact.to_json
           response = http.request request
 
