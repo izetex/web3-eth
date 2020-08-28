@@ -34,7 +34,7 @@ module Web3
         def initialize abi
           @abi = abi
           @name = abi['name']
-          @constant = !!abi['constant']
+          @constant = !!abi['constant'] || abi['stateMutability']=='view'
           @input_types = abi['inputs'] ? abi['inputs'].map{|a| parse_component_type a } : []
           @output_types = abi['outputs'].map{|a| parse_component_type a } if abi['outputs']
           @signature = Abi::Utils.function_signature @name, @input_types
