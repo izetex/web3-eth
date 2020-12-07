@@ -152,13 +152,13 @@ module Web3::Eth::Abi
       end
       collected << current unless current.empty?
 
-      Tuple.new collected, dims
+      Tuple.new collected, dims.map {|x| x[1...-1].to_i}
 
     end
 
     attr_reader :types, :parsed_types
     def initialize types, dims
-      super('tuple', '', dims.map {|x| x[1...-1].to_i})
+      super('tuple', '', dims)
       @types = types
       @parsed_types = types.map{|t| Type.parse t}
     end
