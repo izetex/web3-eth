@@ -12,6 +12,13 @@ module Web3::Eth::Abi
       # 256, 128x128, nil), array component (eg. [], [45], nil)
       #
       def parse(type)
+
+        return parse('uint256') if type=='trcToken'
+        
+        if type =~ /^\((.*)\)((\[[0-9]*\])*)/
+          return Tuple.parse $1, $2.scan(/\[[0-9]*\]/)
+        end
+
         _, base, sub, dimension = /([a-z]*)([0-9]*x?[0-9]*)((\[[0-9]*\])*)/.match(type).to_a
 
         dims = dimension.scan(/\[[0-9]*\]/)
@@ -20,9 +27,7 @@ module Web3::Eth::Abi
         case base
           when ''
             return parse 'address'
-          when 'string'
-            raise ParseError, "String type must have no suffix or numerical suffix" unless sub.empty?
-          when 'bytes'
+          when 'bytes', 'string'
             raise ParseError, "Maximum 32 bytes for fixed-length string or bytes" unless sub.empty? || sub.to_i <= 32
           when 'uint', 'int'
             raise ParseError, "Integer type must have numerical suffix" unless sub =~ /\A[0-9]+\z/
@@ -37,7 +42,8 @@ module Web3::Eth::Abi
             total = high + low
 
             raise ParseError, "Fixed size out of bounds (max 32 bytes)" unless total >= 8 && total <= 256
-            raise ParseError, "Fixed high/low sizes must be multiples of 8" unless high % 8 == 0 && low % 8 == 0
+            raise ParseError, "Fixed high size must be multiple of 8" unless high % 8 == 0
+            raise ParseError, "Low sizes must be 0 to 80" unless low>0 && low<=80
           when 'hash'
             raise ParseError, "Hash type must have numerical suffix" unless sub =~ /\A[0-9]+\z/
           when 'address'
@@ -115,4 +121,82 @@ module Web3::Eth::Abi
     end
 
   end
+
+  class Tuple < Type
+
+    def self.parse types, dims
+
+      depth = 0
+      collected = []
+      current = ''
+
+      types.split('').each do |c|
+        case c
+          when ',' then
+            if depth==0
+              collected << current
+              current = ''
+            else
+              current += c
+            end
+          when '(' then
+            depth += 1
+            current += c
+          when ')' then
+            depth -= 1
+            current += c
+          else
+            current += c
+        end
+
+      end
+      collected << current unless current.empty?
+
+      Tuple.new collected, dims.map {|x| x[1...-1].to_i}
+
+    end
+
+    attr_reader :types, :parsed_types
+    def initialize types, dims
+      super('tuple', '', dims)
+      @types = types
+      @parsed_types = types.map{|t| Type.parse t}
+    end
+
+    def ==(another_type)
+      another_type.kind_of?(Tuple) &&
+          another_type.types == types &&
+          another_type.dims == dims
+    end
+
+    def size
+      @size ||= calculate_size
+    end
+
+    def calculate_size
+      if dims.empty?
+        s = 0
+        parsed_types.each do |type|
+          ts = type.size
+          return nil if ts.nil?
+          s += ts
+        end
+        s
+      else
+        if dims.last == 0 # 0 for dynamic array []
+          nil
+        else
+          subtype.dynamic? ? nil : dims.last * subtype.size
+        end
+      end
+
+
+    end
+
+    def subtype
+      @subtype ||= Tuple.new(types, dims[0...-1])
+    end
+
+  end
+
 end

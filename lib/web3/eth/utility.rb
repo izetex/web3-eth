@@ -12,10 +12,11 @@ module Web3
       end
 
       def from_hex h
-        h.to_i 16
+        h.nil? ? 0 : (h.kind_of?(String) ? h.to_i(16) : h)
       end
 
       def remove_0x_head(s)
+        return s if !s || s.length<2
         s[0,2] == '0x' ? s[2..-1] : s
       end
 

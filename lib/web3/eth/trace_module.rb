@@ -21,6 +21,12 @@ module Web3
         }
       end
 
+      def tracesByBlockNumber block
+        @web3_rpc.request("#{PREFIX}block", [hex(block)]).collect{|t|
+          CallTrace.new t
+        }
+      end
+
     end
   end
 end

@@ -58,7 +58,7 @@ module Web3
 
           json = JSON.parse(response.body)
 
-          raise "Response #{json['message']} on request #{uri.to_s}" unless json['status']=='1'
+          raise "Response #{json['message']} on request #{uri.to_s}" if json['status'] && json['status']!='1'
 
           json['result']
 

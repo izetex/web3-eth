@@ -192,10 +192,15 @@ module Web3::Eth::Abi
       end
     end
 
+
+    def min_data_size types
+      types.size*32
+    end
+    
     ##
     # Decodes multiple arguments using the head/tail mechanism.
     #
-    def decode_abi(types, data)
+    def decode_abi types, data, raise_errors = false
       parsed_types = types.map {|t| Type.parse(t) }
 
       outputs = [nil] * types.size
@@ -207,7 +212,16 @@ module Web3::Eth::Abi
         # If a type is static, grab the data directly, otherwise record its
         # start position
         if t.dynamic?
+
+          if raise_errors && pos>data.size-1
+            raise DecodingError, "Position out of bounds #{pos}>#{data.size-1}"
+          end
+
           start_positions[i] = Utils.big_endian_to_int(data[pos, 32])
+
+          if raise_errors && start_positions[i]>data.size-1
+            raise DecodingError, "Start position out of bounds #{start_positions[i]}>#{data.size-1}"
+          end
 
           j = i - 1
           while j >= 0 && start_positions[j].nil?
@@ -217,7 +231,7 @@ module Web3::Eth::Abi
 
           pos += 32
         else
-          outputs[i] = data[pos, t.size]
+          outputs[i] = zero_padding data, pos, t.size, start_positions
           pos += t.size
         end
       end
@@ -230,36 +244,61 @@ module Web3::Eth::Abi
         j -= 1
       end
 
-#      raise DecodingError, "Not enough data for head" unless pos <= data.size
+      if raise_errors && pos > data.size
+        raise DecodingError, "Not enough data for head"
+      end
+
 
       parsed_types.each_with_index do |t, i|
         if t.dynamic?
           offset, next_offset = start_positions[i, 2]
-          outputs[i] = data[offset...next_offset]
+          if offset<=data.size && next_offset<=data.size
+            outputs[i] = data[offset...next_offset]
+          end
         end
+      end
+
+      if raise_errors && outputs.include?(nil)
+        raise DecodingError, "Not all data can be parsed"
       end
 
       parsed_types.zip(outputs).map {|(type, out)| decode_type(type, out) }
     end
     alias :decode :decode_abi
 
+    def zero_padding data, pos, count, start_positions
+      if pos >= data.size
+        start_positions[start_positions.size-1] += count
+        "\x00"*count
+      elsif pos + count > data.size
+        start_positions[start_positions.size-1] += ( count - (data.size-pos))
+        data[pos,data.size-pos] + "\x00"*( count - (data.size-pos))
+      else
+        data[pos, count]
+      end
+    end
+
     def decode_typed_data type_name, data
       decode_primitive_type Type.parse(type_name), data
     end
 
     def decode_type(type, arg)
-      if %w(string bytes).include?(type.base) && type.sub.empty?
+      return nil if arg.nil? || arg.empty?
+      if type.kind_of?(Tuple) && type.dims.empty?
+        arg ? decode_abi(type.types, arg) : []
+      elsif %w(string bytes).include?(type.base) && type.sub.empty?
         l = Utils.big_endian_to_int arg[0,32]
         data = arg[32..-1]
         data[0, l]
       elsif type.dynamic?
         l = Utils.big_endian_to_int arg[0,32]
+        raise DecodingError, "Too long length: #{l}" if l>100000
         subtype = type.subtype
 
         if subtype.dynamic?
           raise DecodingError, "Not enough data for head" unless arg.size >= 32 + 32*l
 
-          start_positions = (1..l).map {|i| Utils.big_endian_to_int arg[32*i, 32] }
+          start_positions = (1..l).map {|i| 32+Utils.big_endian_to_int(arg[32*i, 32]) }
           start_positions.push arg.size
 
           outputs = (0...l).map {|i| arg[start_positions[i]...start_positions[i+1]] }

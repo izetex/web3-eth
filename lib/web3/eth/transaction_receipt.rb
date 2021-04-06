@@ -31,9 +31,12 @@ module Web3
         from_hex gasUsed
       end
 
-
       def cumulative_gas_used
         from_hex cumulativeGasUsed
+      end
+
+      def transaction_index
+        from_hex transactionIndex
       end
 
     end

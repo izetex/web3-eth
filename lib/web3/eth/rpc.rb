@@ -17,7 +17,7 @@ module Web3
       DEFAULT_HOST = 'localhost'
       DEFAULT_PORT = 8545
 
-      attr_reader :eth, :trace
+      attr_reader :eth, :connect_options
 
       def initialize host: DEFAULT_HOST, port: DEFAULT_PORT, connect_options: DEFAULT_CONNECT_OPTIONS
 
@@ -27,10 +27,20 @@ module Web3
         @connect_options = connect_options
 
         @eth = EthModule.new self
-        @trace = TraceModule.new self
 
       end
 
+      def trace
+        @trace ||= TraceModule.new(self)
+      end
+
+      def parity
+        @parity ||= ParityModule.new(self)
+      end
+
+      def debug
+        @debug ||= Debug::DebugModule.new(self)
+      end
 
       def request method, params = nil
 
@@ -43,7 +53,7 @@ module Web3
 
           raise "Error code #{response.code} on request #{@uri.to_s} #{request.body}" unless response.kind_of? Net::HTTPOK
 
-          body = JSON.parse(response.body)
+          body = JSON.parse(response.body, max_nesting: 1500)
 
           if body['result']
             body['result']
