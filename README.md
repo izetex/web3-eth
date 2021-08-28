@@ -61,7 +61,7 @@ web3 = Web3::Eth::Rpc.new host: 'mainnet.infura.io',
                             open_timeout: 20,
                             read_timeout: 140,
                             use_ssl: true,
-                            rpc_path: '/<YOUR INFURA PERSONAL KEY>'
+                            rpc_path: '/v3/<YOUR INFURA PERSONAL KEY>'
                           }
 ```
 
